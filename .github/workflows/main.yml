@@ -21,7 +21,7 @@ jobs:
         with:
           verbosity: Diagnostic
 
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: AleLuduMod.dll
           path: src/AleLuduMod/bin/Release/net6.0/AleLuduMod.dll
