@@ -1,7 +1,7 @@
 ﻿using AleLuduMod.Components;
 using HarmonyLib;
 
-namespace CrowdedMod.Patches;
+namespace AleLuduMod.Patches;
 
 internal static class PagingPatches
 {
