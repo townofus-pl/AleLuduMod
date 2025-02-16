@@ -7,8 +7,9 @@ Works on **latest** Among Us Steam version.
 
 ## Versions
 | Mod version | Downloads                                                                                   |
-| ----------- |---------------------------------------------------------------------------------------------|
+|-------------|---------------------------------------------------------------------------------------------|
 | v1.0.0      | [GitHub](https://github.com/townofus-pl/AleLuduMod/releases/download/v1.0.0/AleLuduMod.dll) |
+| v1.0.1      | [GitHub](https://github.com/townofus-pl/AleLuduMod/releases/download/v1.0.1/AleLuduMod.dll) |
 
 ## Installation
 Drop it into `\BepInEx\plugins\` folder inside your Among Us folder installation.
