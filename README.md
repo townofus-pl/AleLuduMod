@@ -10,7 +10,7 @@ Works on **latest** Among Us Steam version.
 ## Versions
 | Mod version | Downloads                                                               |
 | ----------- | ----------------------------------------------------------------------- |
-| v1.0.0      | TBD |
+| v1.0.0      | [GitHub](https://github.com/townofus-pl/AleLuduMod/releases/download/v1.0.0/AleLuduMod.dll) |
 
 
 
