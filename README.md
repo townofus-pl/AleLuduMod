@@ -5,6 +5,10 @@ This mod unlocks the possibility to show more than 15 players on screen during a
 
 Works on **latest** Among Us Steam version.
 
+## Presentation
+
+![AleLuduModEmergencyMeeting](https://github.com/townofus-pl/AleLuduMod/blob/main/aleludumeeting.png)
+
 ## Versions
 | Mod version | Downloads                                                                                   |
 |-------------|---------------------------------------------------------------------------------------------|
