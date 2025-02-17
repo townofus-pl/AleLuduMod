@@ -1,7 +1,7 @@
 [Our Discord](https://discord.townofus.pl)
 
-# CrowdedMod
-This mod unlocks the possibility to show more than 15 player during Among Us emergency meeting.
+# AleLuduMod
+This mod unlocks the possibility to show more than 15 players on screen during an emergency meeting.
 
 Works on **latest** Among Us Steam version.
 
@@ -12,7 +12,7 @@ Works on **latest** Among Us Steam version.
 | v1.0.1      | [GitHub](https://github.com/townofus-pl/AleLuduMod/releases/download/v1.0.1/AleLuduMod.dll) |
 
 ## Installation
-Drop it into `\BepInEx\plugins\` folder inside your Among Us folder installation.
+Drop it into `\BepInEx\plugins\` folder inside your Among Us + TownOfUs folder installation.
 
 ## Authors
 - [TownOfUs.pl](http://townofus.pl/)
