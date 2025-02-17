@@ -21,24 +21,29 @@ public class MeetingHudBehaviour : MonoBehaviour
 
     public void Start()
     {
-        var i = 0;
 
+        if (Targets.Count() <= 15)
+        {
+            // dont change layout if players count is below 15
+            return;
+        }
+
+        var i = 0;
         foreach (var button in Targets)
         {
 
-                button.gameObject.SetActive(true);
+            button.gameObject.SetActive(true);
 
-                var relativeIndex = i;
-                var row = relativeIndex / 4;
-                var col = relativeIndex % 4;
-                var buttonTransform = button.transform;
-                buttonTransform.localScale *= 0.75f;
-                buttonTransform.localPosition = meetingHud.VoteOrigin +
-                                          new Vector3(
-                                              meetingHud.VoteButtonOffsets.x * col * 0.75f - 0.35f,
-                                              meetingHud.VoteButtonOffsets.y * row * 0.75f,
-                                              buttonTransform.localPosition.z
-                                          );
+            var row = i / 4;
+            var col = i % 4;
+            var buttonTransform = button.transform;
+            buttonTransform.localScale *= 0.75f;
+            buttonTransform.localPosition = meetingHud.VoteOrigin +
+                                      new Vector3(
+                                          meetingHud.VoteButtonOffsets.x * col * 0.75f - 0.375f,
+                                          meetingHud.VoteButtonOffsets.y * row * 0.75f,
+                                          buttonTransform.localPosition.z
+                                      );
             i++;
         }
     }
