@@ -34,9 +34,8 @@ public class MeetingHudBehaviour : MonoBehaviour
 
             button.gameObject.SetActive(true);
 
-            var relativeIndex = i;
-            var row = relativeIndex / 4;
-            var col = relativeIndex % 4;
+            var row = i / 4;
+            var col = i % 4;
             var buttonTransform = button.transform;
             buttonTransform.localScale *= 0.75f;
             buttonTransform.localPosition = meetingHud.VoteOrigin +
