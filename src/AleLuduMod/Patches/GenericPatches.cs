@@ -1,6 +1,9 @@
 using AmongUs.GameOptions;
 using HarmonyLib;
+using System.Drawing;
 using System.Linq;
+using UnityEngine;
+using UnityEngine.UI;
 
 namespace AleLuduMod.Patches;
 
@@ -29,7 +32,7 @@ internal static class GenericPatches
     {
         public static void Postfix(PingTracker __instance)
         {
-            __instance.text.text += "\n<color=#FFB793>townofus.pl</color>";
+            __instance.text.text += "<line-height=50%><indent=25%>\n<size=60%><color=#cf61c7>townofus.pl</color></indent>";
         }
     }
 
