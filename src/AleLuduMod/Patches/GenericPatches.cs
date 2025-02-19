@@ -1,9 +1,6 @@
 using AmongUs.GameOptions;
 using HarmonyLib;
-using System.Drawing;
 using System.Linq;
-using UnityEngine;
-using UnityEngine.UI;
 
 namespace AleLuduMod.Patches;
 
