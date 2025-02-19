@@ -22,9 +22,9 @@ public class MeetingHudBehaviour : MonoBehaviour
     public void Start()
     {
 
-        if (Targets.Count() <= 15)
+        if (Targets.Count() < 16)
         {
-            // dont change layout if players count is below 15
+            // dont change layout if players count is below 16
             return;
         }
 
