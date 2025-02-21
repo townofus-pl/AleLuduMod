@@ -14,4 +14,13 @@ internal static class PagingPatches
         }
     }
 
+    [HarmonyPatch(typeof(VitalsMinigame), nameof(VitalsMinigame.Begin))]
+    public static class VitalsMinigameBeginPatch
+    {
+        public static void Postfix(VitalsMinigame __instance)
+        {
+            __instance.gameObject.AddComponent<VitalsHudBehaviour>().vitalsMinigame = __instance;
+        }
+    }
+
 }
