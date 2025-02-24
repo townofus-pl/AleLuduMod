@@ -3,6 +3,7 @@ using BepInEx;
 using BepInEx.Unity.IL2CPP;
 using HarmonyLib;
 using Reactor;
+using BepInEx.Configuration;
 using Reactor.Networking;
 using Reactor.Networking.Attributes;
 using System.Linq;
@@ -17,7 +18,7 @@ public partial class AleLuduModPlugin : BasePlugin
 {
     public const int MaxPlayers = 35;
     public const int MaxImpostors = 35 / 2;
-
+    public static ConfigEntry<bool> Force4Columns { get; set; }
     private Harmony Harmony { get; } = new(Id);
 
     public override void Load()
@@ -25,6 +26,8 @@ public partial class AleLuduModPlugin : BasePlugin
         NormalGameOptionsV08.RecommendedImpostors = NormalGameOptionsV08.MaxImpostors = Enumerable.Repeat(35, 35).ToArray();
         NormalGameOptionsV08.MinPlayers = Enumerable.Repeat(4, 35).ToArray();
         HideNSeekGameOptionsV08.MinPlayers = Enumerable.Repeat(4, 35).ToArray();
+
+        Force4Columns = Config.Bind("Settings", "Force 4 columns", true, "Always display 4 columns in meeting, vitals, etc.");
 
         Harmony.PatchAll();
     }
