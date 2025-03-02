@@ -7,6 +7,7 @@ using BepInEx.Configuration;
 using Reactor.Networking;
 using Reactor.Networking.Attributes;
 using System.Linq;
+using BepInEx.Logging;
 
 namespace AleLuduMod;
 
@@ -14,6 +15,7 @@ namespace AleLuduMod;
 [BepInProcess("Among Us.exe")]
 [BepInDependency(ReactorPlugin.Id)]
 [BepInDependency("gg.reactor.debugger", BepInDependency.DependencyFlags.SoftDependency)] // fix debugger overwriting MinPlayers
+[BepInDependency("com.slushiegoose.townofus", BepInDependency.DependencyFlags.SoftDependency)] // load after town of us
 public partial class AleLuduModPlugin : BasePlugin
 {
     public const int MaxPlayers = 35;
@@ -22,7 +24,7 @@ public partial class AleLuduModPlugin : BasePlugin
     private Harmony Harmony { get; } = new(Id);
 
     public override void Load()
-    {
+    { 
         NormalGameOptionsV08.RecommendedImpostors = NormalGameOptionsV08.MaxImpostors = Enumerable.Repeat(35, 35).ToArray();
         NormalGameOptionsV08.MinPlayers = Enumerable.Repeat(4, 35).ToArray();
         HideNSeekGameOptionsV08.MinPlayers = Enumerable.Repeat(4, 35).ToArray();
