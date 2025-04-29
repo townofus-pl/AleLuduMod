@@ -10,10 +10,10 @@ internal static class GenericPatches
 
     // I did not find a use of this method, but still patching for future updates
     // maxExpectedPlayers is unknown, looks like server code tbh
-    [HarmonyPatch(typeof(GameOptionsData), nameof(GameOptionsData.AreInvalid))]
+    [HarmonyPatch(typeof(LegacyGameOptions), nameof(LegacyGameOptions.AreInvalid))]
     public static class InvalidOptionsPatches
     {
-        public static bool Prefix(GameOptionsData __instance, [HarmonyArgument(0)] int maxExpectedPlayers)
+        public static bool Prefix(LegacyGameOptions __instance, [HarmonyArgument(0)] int maxExpectedPlayers)
         {
             return __instance.MaxPlayers > maxExpectedPlayers ||
                    __instance.NumImpostors < 1 ||

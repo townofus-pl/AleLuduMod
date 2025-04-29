@@ -25,9 +25,9 @@ public partial class AleLuduModPlugin : BasePlugin
 
     public override void Load()
     { 
-        NormalGameOptionsV08.RecommendedImpostors = NormalGameOptionsV08.MaxImpostors = Enumerable.Repeat(35, 35).ToArray();
-        NormalGameOptionsV08.MinPlayers = Enumerable.Repeat(4, 35).ToArray();
-        HideNSeekGameOptionsV08.MinPlayers = Enumerable.Repeat(4, 35).ToArray();
+        NormalGameOptionsV09.RecommendedImpostors = NormalGameOptionsV09.MaxImpostors = Enumerable.Repeat(35, 35).ToArray();
+        NormalGameOptionsV09.MinPlayers = Enumerable.Repeat(4, 35).ToArray();
+        HideNSeekGameOptionsV09.MinPlayers = Enumerable.Repeat(4, 35).ToArray();
 
         Force4Columns = Config.Bind("Settings", "Force 4 columns", true, "Always display 4 columns in meeting, vitals, etc.");
 
