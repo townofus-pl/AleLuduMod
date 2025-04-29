@@ -10,13 +10,14 @@ Works on **latest** Among Us Steam version.
 ![AleLuduModEmergencyMeeting](https://github.com/townofus-pl/AleLuduMod/blob/main/aleludumeeting.png)
 
 ## Versions
-| Mod version | Downloads                                                                                   |
-|-------------|---------------------------------------------------------------------------------------------|
-| v1.0.4      | [GitHub](https://github.com/townofus-pl/AleLuduMod/releases/download/v1.0.4/AleLuduMod.dll) |
-| v1.0.3      | [GitHub](https://github.com/townofus-pl/AleLuduMod/releases/download/v1.0.3/AleLuduMod.dll) |
-| v1.0.2      | [GitHub](https://github.com/townofus-pl/AleLuduMod/releases/download/v1.0.2/AleLuduMod.dll) |
-| v1.0.1      | [GitHub](https://github.com/townofus-pl/AleLuduMod/releases/download/v1.0.1/AleLuduMod.dll) |
-| v1.0.0      | [GitHub](https://github.com/townofus-pl/AleLuduMod/releases/download/v1.0.0/AleLuduMod.dll) |
+| Mod version | Downloads                                                                                   | Notes |
+|-------------|---------------------------------------------------------------------------------------------|-------| 
+| v1.0.5.beta | [GitHub](https://github.com/townofus-pl/AleLuduMod/releases/download/v1.0.5.beta/AleLuduMod.dll) | Doesn't include creating 15+ players lobby. |
+| v1.0.4      | [GitHub](https://github.com/townofus-pl/AleLuduMod/releases/download/v1.0.4/AleLuduMod.dll) | |
+| v1.0.3      | [GitHub](https://github.com/townofus-pl/AleLuduMod/releases/download/v1.0.3/AleLuduMod.dll) | | 
+| v1.0.2      | [GitHub](https://github.com/townofus-pl/AleLuduMod/releases/download/v1.0.2/AleLuduMod.dll) | |
+| v1.0.1      | [GitHub](https://github.com/townofus-pl/AleLuduMod/releases/download/v1.0.1/AleLuduMod.dll) | |
+| v1.0.0      | [GitHub](https://github.com/townofus-pl/AleLuduMod/releases/download/v1.0.0/AleLuduMod.dll) | |
 
 ## Installation
 Drop it into `\BepInEx\plugins\` folder inside your Among Us + TownOfUs folder installation.
