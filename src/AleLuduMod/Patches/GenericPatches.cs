@@ -106,7 +106,6 @@ internal static class GenericPatches
             {
                 impostorsOption.ValidRange = new FloatRange(1, AleLuduModPlugin.MaxImpostors);
             }
-
         }
     }
 }
