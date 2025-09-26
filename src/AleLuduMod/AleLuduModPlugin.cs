@@ -7,7 +7,7 @@ using Reactor.Utilities;
 
 namespace AleLuduMod;
 
-[BepInAutoPlugin("pl.aleludumod.plugin")]
+[BepInAutoPlugin("pl.townofus.aleludu")]
 [BepInProcess("Among Us.exe")]
 [BepInDependency(ReactorPlugin.Id)]
 [BepInDependency("gg.reactor.debugger", BepInDependency.DependencyFlags.SoftDependency)] // fix debugger overwriting MinPlayers
