@@ -14,8 +14,7 @@ namespace AleLuduMod.Patches
         {
             public static bool Prefix(ChatController __instance, [HarmonyArgument(0)] PlayerControl sourcePlayer , ref string chatText)
             {
-                if (__instance != HudManager.Instance.Chat)
-                    return true;
+                if (__instance != HudManager.Instance.Chat) return true;
 
                 // After entering the command, when you try to join the lobby it will show "X/15". Only after the game is over will there be a larger lobby.
                 if (chatText.StartsWith("!limit "))

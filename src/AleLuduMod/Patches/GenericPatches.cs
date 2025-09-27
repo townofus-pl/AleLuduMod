@@ -2,7 +2,6 @@ using AmongUs.GameOptions;
 using HarmonyLib;
 using Il2CppInterop.Runtime.InteropTypes.Arrays;
 using Il2CppSystem.Reflection;
-using Reactor.Utilities;
 using System.Linq;
 
 namespace AleLuduMod.Patches;
@@ -71,10 +70,7 @@ internal static class GenericPatches
             {
                 TryAdjustOptionsRecommendations(__instance);
             }
-            catch (System.Exception e)
-            {
-                Logger<AleLuduModPlugin>.Error($"Failed to adjust options recommendations: {e}");
-            }
+            catch { }
         }
     }
 
@@ -87,10 +83,7 @@ internal static class GenericPatches
             {
                 TryAdjustOptionsRecommendations(__instance);
             }
-            catch (System.Exception e)
-            {
-                Logger<AleLuduModPlugin>.Error($"Failed to adjust options recommendations: {e}");
-            }
+            catch { }
         }
     }
 
