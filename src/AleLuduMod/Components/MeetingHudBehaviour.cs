@@ -10,7 +10,7 @@ namespace AleLuduMod.Components;
 [RegisterInIl2Cpp]
 public class MeetingHudBehaviour : MonoBehaviour
 {
-    public MeetingHudBehaviour(IntPtr ptr) : base(ptr) {}
+    public MeetingHudBehaviour(IntPtr ptr) : base(ptr) { }
     internal MeetingHud meetingHud = null!;
 
     [HideFromIl2Cpp]

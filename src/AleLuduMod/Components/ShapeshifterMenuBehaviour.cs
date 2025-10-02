@@ -10,7 +10,7 @@ namespace AleLuduMod.Components;
 [RegisterInIl2Cpp]
 public class ShapeshifterBehaviour : MonoBehaviour
 {
-    public ShapeshifterBehaviour(IntPtr ptr) : base(ptr){}
+    public ShapeshifterBehaviour(IntPtr ptr) : base(ptr) { }
     internal ShapeshifterMinigame shapeshifterMinigame = null!;
 
     [HideFromIl2Cpp] 

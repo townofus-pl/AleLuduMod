@@ -10,7 +10,7 @@ namespace AleLuduMod.Components;
 [RegisterInIl2Cpp]
 public class VitalsHudBehaviour : MonoBehaviour
 {
-    public VitalsHudBehaviour(IntPtr ptr) : base(ptr) {}
+    public VitalsHudBehaviour(IntPtr ptr) : base(ptr) { }
     internal VitalsMinigame vitalsMinigame = null!;
 
     [HideFromIl2Cpp]
@@ -28,10 +28,10 @@ public class VitalsHudBehaviour : MonoBehaviour
             var panelTransform = panel.transform;
             panelTransform.localScale *= 0.75f;
             panelTransform.localPosition = new Vector3(
-                                          vitalsMinigame.XStart + vitalsMinigame.XOffset * (col * 0.75f - 0.25f),
-                                          vitalsMinigame.YStart +  vitalsMinigame.YOffset * row * 0.75f,
-                                          panelTransform.localPosition.z
-                                      );
+                                           vitalsMinigame.XStart + vitalsMinigame.XOffset * (col * 0.75f - 0.25f),
+                                           vitalsMinigame.YStart +  vitalsMinigame.YOffset * row * 0.75f,
+                                           panelTransform.localPosition.z
+                                           );
             i++;
         }
     }

@@ -19,7 +19,16 @@ namespace AleLuduMod.Patches
                 // After entering the command, when you try to join the lobby it will show "X/15". Only after the game is over will there be a larger lobby.
                 if (chatText.StartsWith("!limit "))
                 {
-                    if (GameData.Instance.GetHost() == sourcePlayer.Data)
+                    if ((AmongUsClient.Instance.GameState == InnerNet.InnerNetClient.GameStates.Started || AmongUsClient.Instance.NetworkMode == NetworkModes.FreePlay) && sourcePlayer.PlayerId == PlayerControl.LocalPlayer.PlayerId)
+                    {
+                        if (sourcePlayer.PlayerId == PlayerControl.LocalPlayer.PlayerId)
+                        {
+                            chatText = "You cannot use this command during the game!";
+                            error = true;
+                        }
+                        return sourcePlayer.PlayerId == PlayerControl.LocalPlayer.PlayerId;
+                    }
+                    if (GameData.Instance.GetHost() == sourcePlayer.Data && sourcePlayer.PlayerId == PlayerControl.LocalPlayer.PlayerId)
                     {
                         string[] args = chatText.Split(' ');
                         if (args.Length > 1 && int.TryParse(args[1], out int newLimit))
@@ -31,10 +40,9 @@ namespace AleLuduMod.Patches
                                     GameOptionsManager.Instance.CurrentGameOptions.SetInt(Int32OptionNames.MaxPlayers, newLimit);
                                     if (sourcePlayer.PlayerId == PlayerControl.LocalPlayer.PlayerId)
                                     {
+                                        chatText = $"Player limit has been set for: <color=#D91919FF><b>{newLimit}</b></color>";
                                         system = true;
-                                        HudManager.Instance.Chat.AddChat(PlayerControl.LocalPlayer, $"A player limit has been set for: <color=#D91919FF>{newLimit}</color>");
                                     }
-                                    return false;
                                 }
                                 catch { }
                             }
@@ -42,20 +50,18 @@ namespace AleLuduMod.Patches
                             {
                                 if (sourcePlayer.PlayerId == PlayerControl.LocalPlayer.PlayerId)
                                 {
+                                    chatText = "The !limit command has a range of 4 - 35!";
                                     error = true;
-                                    HudManager.Instance.Chat.AddChat(PlayerControl.LocalPlayer, "The limit must be between 4 and 35.");
                                 }
-                                return false;
                             }
                         }
                         else
                         {
                             if (sourcePlayer.PlayerId == PlayerControl.LocalPlayer.PlayerId)
                             {
+                                chatText = "Use !limit [number]. Example: !limit 20";
                                 error = true;
-                                HudManager.Instance.Chat.AddChat(PlayerControl.LocalPlayer, "Use !limit [number]. Example: !limit 20");
                             }
-                            return false;
                         }
                     }
                     else if (sourcePlayer.PlayerId == PlayerControl.LocalPlayer.PlayerId)
@@ -63,9 +69,8 @@ namespace AleLuduMod.Patches
                         if (sourcePlayer.PlayerId == PlayerControl.LocalPlayer.PlayerId)
                         {
                             noaccess = true;
-                            HudManager.Instance.Chat.AddChat(PlayerControl.LocalPlayer, "You don't have access to this command!");
+                            chatText = "You don't have access to this command!";
                         }
-                        return false;
                     }
                     return sourcePlayer.PlayerId == PlayerControl.LocalPlayer.PlayerId;
                 }
