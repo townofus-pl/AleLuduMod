@@ -68,8 +68,8 @@ namespace AleLuduMod.Patches
                     {
                         if (sourcePlayer.PlayerId == PlayerControl.LocalPlayer.PlayerId)
                         {
-                            noaccess = true;
                             chatText = "You don't have access to this command!";
+                            noaccess = true;
                         }
                     }
                     return sourcePlayer.PlayerId == PlayerControl.LocalPlayer.PlayerId;
