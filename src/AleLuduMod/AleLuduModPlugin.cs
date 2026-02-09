@@ -22,9 +22,13 @@ public partial class AleLuduModPlugin : BasePlugin
 
     public override void Load()
     { 
-        NormalGameOptionsV09.RecommendedImpostors = NormalGameOptionsV09.MaxImpostors = Enumerable.Repeat(36, 36).ToArray();
-        NormalGameOptionsV09.MinPlayers = Enumerable.Repeat(4, 36).ToArray();
-        HideNSeekGameOptionsV09.MinPlayers = Enumerable.Repeat(4, 36).ToArray();
+        NormalGameOptionsV10.RecommendedImpostors = NormalGameOptionsV10.MaxImpostors = Enumerable.Repeat(36, 36).ToArray();
+        NormalGameOptionsV10.MinPlayers = Enumerable.Repeat(4, 36).ToArray();
+        HideNSeekGameOptionsV10.MinPlayers = Enumerable.Repeat(4, 36).ToArray();
+
+        IL2CPPChainloader.Instance.Finished +=
+            ModCompatibility
+                .Initialize; // Initialise AFTER the mods are loaded to ensure maximum parity
 
         Force4Columns = Config.Bind("Settings", "Force 4 columns", true, "Always display 4 columns in meeting, vitals, etc.");
 
