@@ -1,7 +1,7 @@
 [Our Discord](https://discord.townofus.pl)
 
 # AleLuduMod
-This mod unlocks the possibility to show more than 15 players on screen during an emergency meeting, on vitals, and on the Transporter/Glitch screen.
+This mod unlocks the possibility to show more than 15 players on screen during an emergency meeting, vitals and shapeshifter menu.
 
 Works on **latest** Among Us Steam version.
 
