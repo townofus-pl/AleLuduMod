@@ -12,7 +12,7 @@ namespace AleLuduMod.Patches
         [HarmonyPatch(typeof(ChatController), nameof(ChatController.AddChat))]
         public class Commands
         {
-            public static bool Prefix(ChatController __instance, [HarmonyArgument(0)] PlayerControl sourcePlayer , ref string chatText)
+            public static bool Prefix(ChatController __instance, [HarmonyArgument(0)] PlayerControl sourcePlayer, ref string chatText)
             {
                 if (__instance != HudManager.Instance.Chat) return true;
 

@@ -66,11 +66,7 @@ internal static class GenericPatches
     {
         public static void Postfix(GameOptionsManager __instance)
         {
-            try
-            {
-                TryAdjustOptionsRecommendations(__instance);
-            }
-            catch { }
+            TryAdjustOptionsRecommendations(__instance);
         }
     }
 
@@ -79,25 +75,25 @@ internal static class GenericPatches
     {
         public static void Postfix(GameOptionsManager __instance)
         {
-            try
-            {
-                TryAdjustOptionsRecommendations(__instance);
-            }
-            catch { }
+            TryAdjustOptionsRecommendations(__instance);
         }
     }
 
-    [HarmonyPatch(typeof(GameOptionsMenu), nameof(GameOptionsMenu.Initialize))]
-    public static class GameOptionsMenu_Initialize
+    [HarmonyPatch(typeof(GameManager), nameof(GameManager.Awake))]
+    public static class GameManager_Awake
     {
-        public static void Postfix(GameOptionsMenu __instance)
+        public static void Postfix(GameManager __instance)
         {
-            var numberOptions = __instance.GetComponentsInChildren<NumberOption>();
-
-            var impostorsOption = numberOptions.FirstOrDefault(o => o.Title == StringNames.GameNumImpostors);
-            if (impostorsOption != null)
+            foreach (var category in __instance.GameSettingsList.AllCategories)
             {
-                impostorsOption.ValidRange = new FloatRange(1, AleLuduModPlugin.MaxImpostors);
+                foreach (var option in category.AllGameSettings)
+                {
+                    if (option is IntGameSetting intOption && option.Title == StringNames.GameNumImpostors)
+                    {
+                        intOption.ValidRange = new IntRange(1, AleLuduModPlugin.MaxImpostors);
+                        return;
+                    }
+                }
             }
         }
     }

@@ -29,7 +29,7 @@ public class VitalsHudBehaviour : MonoBehaviour
             panelTransform.localScale *= 0.75f;
             panelTransform.localPosition = new Vector3(
                                            vitalsMinigame.XStart + vitalsMinigame.XOffset * (col * 0.75f - 0.25f),
-                                           vitalsMinigame.YStart +  vitalsMinigame.YOffset * row * 0.75f,
+                                           vitalsMinigame.YStart + vitalsMinigame.YOffset * row * 0.75f,
                                            panelTransform.localPosition.z
                                            );
             i++;

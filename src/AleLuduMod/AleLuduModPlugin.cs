@@ -22,6 +22,8 @@ public partial class AleLuduModPlugin : BasePlugin
     {
         ReactorCredits.Register<AleLuduModPlugin>(ReactorCredits.AlwaysShow);
 
+        IL2CPPChainloader.Instance.Finished += ModCompatibility.Initialize;
+
         Force4Columns = Config.Bind("Settings", "Force 4 columns", true, "Always display 4 columns in meeting, vitals, etc.");
 
         Harmony.PatchAll();

@@ -13,7 +13,7 @@ public class ShapeshifterBehaviour : MonoBehaviour
     public ShapeshifterBehaviour(IntPtr ptr) : base(ptr) { }
     internal ShapeshifterMinigame shapeshifterMinigame = null!;
 
-    [HideFromIl2Cpp] 
+    [HideFromIl2Cpp]
     public IEnumerable<ShapeshifterPanel> Targets => shapeshifterMinigame.potentialVictims.ToArray();
 
     public void Start()
