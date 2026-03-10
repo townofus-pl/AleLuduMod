@@ -1,18 +1,17 @@
-<p align="center">
-
-<center>
-<a href="https://discord.townofus.pl" target="_blank"><img src="https://img.shields.io/badge/Discord%20-%231DA1F2.svg?&style=for-the-badge&logo=discord&logoColor=white&color=5662f6"/></a>
-<a href="https://github.com/raspberrygitq/AleLuduMod/releases/latest" target="_blank"><img src="https://img.shields.io/badge/Latest Version%20-%231DA1F2.svg?&style=for-the-badge&logo=github&logoColor=white&color=181717"/></a>
-</center>
-
-</p>
-
-<br>
-
-![Downloads](https://img.shields.io/github/downloads/raspberrygitq/AleLuduMod/total)
-![Latest Version](https://img.shields.io/github/v/release/raspberrygitq/AleLuduMod)
+<div align="center">
 
 # AleLuduMod
+
+[![Discord](https://img.shields.io/badge/Discord-Join%20Server-5662f6?style=for-the-badge&logo=discord&logoColor=white)](https://discord.townofus.pl)
+[![Download](https://img.shields.io/badge/Download-Latest-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/raspberrygitq/AleLuduMod/releases/latest)
+
+![GitHub Downloads](https://img.shields.io/github/downloads/raspberrygitq/AleLuduMod/total.svg?style=flat-square)
+![GitHub Release](https://img.shields.io/github/release/raspberrygitq/AleLuduMod.svg?style=flat-square)
+
+</div>
+
+---
+
 This mod unlocks the possibility to show more than 15 players on screen during an meeting hud, vitals and shapeshifter menu.
 
 Works on **latest** Among Us Steam version.
@@ -26,8 +25,8 @@ Works on **latest** Among Us Steam version.
 
 ## Versions
 
-| Mod Version | Among Us - Version | Downloads |
-|-------------|--------------------|-----------|
+| Mod Version | Among Us - Version | Downloads                                                                                       |
+|-------------|--------------------|-------------------------------------------------------------------------------------------------|
 | v1.1.1      | 17.0.0 - 17.2.1    | [Download](https://github.com/raspberrygitq/AleLuduMod/releases/download/v1.1.1/AleLuduMod.dll) |
 | v1.1.0      | 16.0.0 - 16.1.0    | [Download](https://github.com/raspberrygitq/AleLuduMod/releases/download/v1.1.0/AleLuduMod.dll) | 
 
