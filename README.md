@@ -15,7 +15,7 @@ This mod unlocks the possibility to show more than 15 players on screen during a
 
 Works on **latest** Among Us Steam version.
 
-> ### :warning: **WARNING** :warning:
+> [!Warning]
 > AleLuduMod **doesn't** work with official servers from Innersloth. It is recommended to use modded servers.
 
 ## Presentation
