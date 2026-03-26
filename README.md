@@ -49,6 +49,12 @@ Drop `AleLuduMod.dll` it the **`BepInEx\plugins`** folder with other mods or dow
 > [!Warning]
 > The mod needs [BepInEx](https://builds.bepinex.dev/projects/bepinex_be) and [Reactor](https://github.com/nuclearpowered/reactor) to work properly. While **BepInEx** is used by every mod and shouldn't be a problem, without **Reactor** you can't launch the mod.
 
+## Mod Compatibility
+
+AleLuduMod should be compatible with most mods that don't significantly alter the graphical interface in the meetings / vitals / shapeshifter menus.
+> [!Caution]
+> Mods that use code from **CrowdedMod** are incompatible with AleLuduMod, which is a host-only mod. CrowdedMod itself is **incompatible** with AleLuduMod because it modifies the interface in the same way as AleLuduMod.
+
 ## Commands
 - `!limit <number>` - Set the maximum number of players in lobby (from 4 to 35).
 
