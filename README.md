@@ -53,7 +53,7 @@ Drop `AleLuduMod.dll` it the **`BepInEx\plugins`** folder with other mods or dow
 
 AleLuduMod should be compatible with most mods that don't significantly alter interface in the meetings / vitals / shapeshifter menus.
 > [!Caution]
-> Host-only mods that use code from CrowdedMod are incompatible with AleLuduMod. CrowdedMod itself is **incompatible** with AleLuduMod because it modifies the interface in the same way as AleLuduMod.
+> Host-only mods that use code from CrowdedMod are incompatible. CrowdedMod itself is **incompatible** with AleLuduMod because it modifies the interface in the same way as AleLuduMod.
 
 ## Commands
 - `!limit <number>` - Set the maximum number of players in lobby (from 4 to 35).
