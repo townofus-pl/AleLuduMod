@@ -1,13 +1,13 @@
 using AmongUs.GameOptions;
 using HarmonyLib;
+using Il2CppInterop.Runtime.InteropTypes.Arrays;
+using Il2CppSystem.Reflection;
 using System.Linq;
 
 namespace AleLuduMod.Patches;
 
 internal static class GenericPatches
 {
-
-
     // I did not find a use of this method, but still patching for future updates
     // maxExpectedPlayers is unknown, looks like server code tbh
     [HarmonyPatch(typeof(LegacyGameOptions), nameof(LegacyGameOptions.AreInvalid))]
@@ -23,30 +23,78 @@ internal static class GenericPatches
         }
     }
 
-
-    [HarmonyPatch(typeof(PingTracker), nameof(PingTracker.Update))]
-    public static class PingShowerPatch
+    [HarmonyPatch(typeof(GameStartManager), nameof(GameStartManager.Update))]
+    public static class GameStartManagerUpdatePatch
     {
-        public static void Postfix(PingTracker __instance)
+        [HarmonyPostfix]
+        [HarmonyPatch(typeof(CreateGameOptions), nameof(CreateGameOptions.Show))]
+        public static void CreateGameOptionsShowPostfix(CreateGameOptions __instance)
         {
-            __instance.text.text += "<line-height=50%><indent=25%>\n<size=60%><color=#cf61c7>townofus.pl</color></indent>";
+            var numberOption = __instance.gameObject.GetComponentInChildren<NumberOption>(true);
+            if (numberOption != null)
+            {
+                numberOption.ValidRange.max = AleLuduModPlugin.MaxPlayers;
+            }
         }
     }
 
-
-    [HarmonyPatch(typeof(GameOptionsMenu), nameof(GameOptionsMenu.Initialize))]
-    public static class GameOptionsMenu_Initialize
+    private static void TryAdjustOptionsRecommendations(GameOptionsManager manager)
     {
-        public static void Postfix(GameOptionsMenu __instance)
+        const int MaxPlayers = AleLuduModPlugin.MaxPlayers;
+        var type = manager.GetGameOptions();
+        var options = manager.GameHostOptions.Cast<Il2CppSystem.Object>();
+
+        var maxRecommendation = ((Il2CppStructArray<int>)Enumerable.Repeat(MaxPlayers, MaxPlayers + 1).ToArray())
+            .Cast<Il2CppSystem.Object>();
+        var minRecommendation = ((Il2CppStructArray<int>)Enumerable.Repeat(4, MaxPlayers + 1).ToArray())
+            .Cast<Il2CppSystem.Object>();
+        var killRecommendation = ((Il2CppStructArray<int>)Enumerable.Repeat(0, MaxPlayers + 1).ToArray())
+            .Cast<Il2CppSystem.Object>();
+
+
+        const BindingFlags flags = BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static;
+        // all these fields are currently static, but we're doing a forward compat
+        // static fields ignore object param so non-null instance is ok
+        type.GetField("RecommendedImpostors", flags)?.SetValue(options, maxRecommendation);
+        type.GetField("MaxImpostors", flags)?.SetValue(options, maxRecommendation);
+        type.GetField("RecommendedKillCooldown", flags)?.SetValue(options, killRecommendation);
+        type.GetField("MinPlayers", flags)?.SetValue(options, minRecommendation);
+    }
+
+    [HarmonyPatch(typeof(GameOptionsManager), nameof(GameOptionsManager.GameHostOptions), MethodType.Setter)]
+    public static class GameOptionsManager_set_GameHostOptions
+    {
+        public static void Postfix(GameOptionsManager __instance)
         {
-            var numberOptions = __instance.GetComponentsInChildren<NumberOption>();
+            TryAdjustOptionsRecommendations(__instance);
+        }
+    }
 
-            var impostorsOption = numberOptions.FirstOrDefault(o => o.Title == StringNames.GameNumImpostors);
-            if (impostorsOption != null)
+    [HarmonyPatch(typeof(GameOptionsManager), nameof(GameOptionsManager.SwitchGameMode))]
+    public static class GameOptionsManager_SwitchGameMode
+    {
+        public static void Postfix(GameOptionsManager __instance)
+        {
+            TryAdjustOptionsRecommendations(__instance);
+        }
+    }
+
+    [HarmonyPatch(typeof(GameManager), nameof(GameManager.Awake))]
+    public static class GameManager_Awake
+    {
+        public static void Postfix(GameManager __instance)
+        {
+            foreach (var category in __instance.GameSettingsList.AllCategories)
             {
-                impostorsOption.ValidRange = new FloatRange(1, AleLuduModPlugin.MaxImpostors);
+                foreach (var option in category.AllGameSettings)
+                {
+                    if (option is IntGameSetting intOption && option.Title == StringNames.GameNumImpostors)
+                    {
+                        intOption.ValidRange = new IntRange(1, AleLuduModPlugin.MaxImpostors);
+                        return;
+                    }
+                }
             }
-
         }
     }
 }

@@ -1,0 +1,19 @@
+{
+  "Name": "AleLuduMod",
+  "Description": "This mod unlocks the possibility to show more than 15 players on screen during an meeting hud, vitals and shapeshifter menu.",
+  "Tags": [
+    "hud",
+    "mods"
+  ],
+  "Icon": "AleLuduMod.Resources.Icon.png",
+  "License": "MIT",
+  "Authors": [
+    "TownOfUs.pl",
+    "OrzechMC",
+    "Bubeu",
+    "gitq"
+  ],
+  "Links": {
+    "Source": "https://github.com/raspberrygitq/AleLuduMod"
+  }
+}
