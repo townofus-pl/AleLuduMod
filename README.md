@@ -63,6 +63,7 @@ AleLuduMod should be compatible with most mods that don't significantly alter in
 - OrzechMC
 - Bubeu
 - gitq
+- Atony
 
 ## Credits
 - [CrowdedMods](https://github.com/CrowdedMods/CrowdedMod) - current authors of CrowdedMod that we used as a base for our mod
