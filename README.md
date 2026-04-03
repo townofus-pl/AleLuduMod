@@ -5,8 +5,8 @@
 [![Discord](https://img.shields.io/badge/Discord-Join%20Server-5662f6?style=for-the-badge&logo=discord&logoColor=white)](https://discord.townofus.pl)
 [![Download](https://img.shields.io/badge/Download-Latest-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/townofus-pl/AleLuduMod/releases/latest)
 
-![GitHub Downloads](https://img.shields.io/github/downloads/raspberrygitq/AleLuduMod/total.svg?style=flat-square)
-![GitHub Release](https://img.shields.io/github/release/raspberrygitq/AleLuduMod.svg?style=flat-square)
+![GitHub Downloads](https://img.shields.io/github/downloads/townofus-pl/AleLuduMod/total.svg?style=flat-square)
+![GitHub Release](https://img.shields.io/github/release/townofus-pl/AleLuduMod.svg?style=flat-square)
 
 </div>
 
