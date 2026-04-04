@@ -26,7 +26,7 @@ Works on **latest** Among Us Steam version.
 
 | Mod Version | Among Us - Version | Downloads                                                                                       |
 |-------------|--------------------|-------------------------------------------------------------------------------------------------|
-| v1.1.2      | 17.0.0 - 17.2.2    | [Download](https://github.com/townofus-pl/AleLuduMod/releases/download/v1.1.2/AleLuduMod.dll) |
+| v1.1.2      | 17.0.0 - 17.3.0    | [Download](https://github.com/townofus-pl/AleLuduMod/releases/download/v1.1.2/AleLuduMod.dll) |
 | v1.1.1      | 17.0.0 - 17.2.1    | [Download](https://github.com/raspberrygitq/AleLuduMod/releases/download/v1.1.1/AleLuduMod.dll) |
 | v1.1.0      | 16.0.0 - 16.1.0    | [Download](https://github.com/raspberrygitq/AleLuduMod/releases/download/v1.1.0/AleLuduMod.dll) | 
 
