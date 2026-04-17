@@ -20,6 +20,8 @@ public static class ServerDropdownPatch
 
     public static bool Prefix(ServerDropdown __instance)
     {
+        if (ModCompatibility.MiraApiLoaded) return true;
+
         var num = 0;
         __instance.background.size = new Vector2(8.4f, 4.8f);
 
@@ -30,10 +32,7 @@ public static class ServerDropdownPatch
             if (ServerManager.Instance.CurrentRegion.RegionEquals(regionInfo))
             {
                 __instance.defaultButtonSelected = __instance.firstOption;
-                __instance.firstOption.ChangeButtonText(
-                    TranslationController.Instance.GetStringWithDefault(
-                        regionInfo.TranslateName,
-                        regionInfo.Name));
+                __instance.firstOption.ChangeButtonText(TranslationController.Instance.GetStringWithDefault(regionInfo.TranslateName, regionInfo.Name));
             }
             else
             {
@@ -47,18 +46,12 @@ public static class ServerDropdownPatch
                 var y = -0.55f * (num / 2f);
                 serverListButton.transform.localPosition = new Vector3(x, __instance.y_posButton + y, -1f);
                 serverListButton.transform.localScale = Vector3.one;
-                serverListButton.Text.text =
-                    TranslationController.Instance.GetStringWithDefault(
-                        regionInfo.TranslateName,
-                        regionInfo.Name);
+                serverListButton.Text.text = TranslationController.Instance.GetStringWithDefault(regionInfo.TranslateName, regionInfo.Name);
                 serverListButton.Text.ForceMeshUpdate();
                 serverListButton.Button.OnClick.RemoveAllListeners();
                 serverListButton.Button.OnClick.AddListener((UnityAction)(() => { __instance.ChooseOption(region); }));
                 __instance.controllerSelectable.Add(serverListButton.Button);
-                __instance.background.transform.localPosition = new Vector3(
-                    findingGame ? 2f : 0f,
-                    __instance.initialYPos + -0.3f * (num / 2f),
-                    0f);
+                __instance.background.transform.localPosition = new Vector3(findingGame ? 2f : 0f, __instance.initialYPos + -0.3f * (num / 2f), 0f);
                 __instance.background.size = new Vector2(__instance.background.size.x, 1.2f + 0.6f * (num / 2f));
                 num++;
             }

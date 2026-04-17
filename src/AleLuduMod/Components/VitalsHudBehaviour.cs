@@ -18,7 +18,8 @@ public class VitalsHudBehaviour : MonoBehaviour
 
     public void Start()
     {
-        if (Targets.Count() < 16 && !AleLuduModPlugin.Force4Columns.Value) return; // dont change layout if players count is below 16
+        if (Targets.Count() < 16 && !AleLuduModConfig.Force4Columns.Value) return; // dont change layout if players count is below 16
+
         var i = 0;
         foreach (var panel in Targets)
         {
