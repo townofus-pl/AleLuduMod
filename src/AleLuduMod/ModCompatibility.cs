@@ -28,10 +28,7 @@ public static class ModCompatibility
 
     private static void InitMiraApi()
     {
-        if (!IL2CPPChainloader.Instance.Plugins.TryGetValue(MiraApiGuid, out var value))
-        {
-            return;
-        }
+        if (!IL2CPPChainloader.Instance.Plugins.TryGetValue(MiraApiGuid, out var value)) return;
 
         MiraApiPlugin = (value.Instance as BasePlugin)!;
         MiraApiAssembly = MiraApiPlugin.GetType().Assembly;
@@ -43,8 +40,7 @@ public static class ModCompatibility
 
         var compatType = typeof(ModCompatibility);
         var harmony = new Harmony("aleludu.miraapi.patch");
-        harmony.Patch(menuBegin, null,
-            new HarmonyMethod(AccessTools.Method(compatType, nameof(BeginPostfix))));
+        harmony.Patch(menuBegin, null, new HarmonyMethod(AccessTools.Method(compatType, nameof(BeginPostfix))));
 
         MiraApiLoaded = true;
         Logger<AleLuduModPlugin>.Message("MiraAPI was detected and patched");
@@ -52,7 +48,7 @@ public static class ModCompatibility
     public static void BeginPostfix(dynamic __instance, Func<PlayerControl, bool> playerMatch, Action<PlayerControl?> onClick)
     {
         var targets = __instance.potentialVictims as List<ShapeshifterPanel>;
-        if (targets == null || targets.Count() < 16 && !AleLuduModPlugin.Force4Columns.Value) return;
+        if (targets == null || targets.Count() < 16 && !AleLuduModConfig.Force4Columns.Value) return;
 
         var i = 0;
 

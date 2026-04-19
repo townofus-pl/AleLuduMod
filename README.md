@@ -13,8 +13,6 @@
 #
 This mod unlocks the possibility to show more than 15 players on screen during an meeting hud, vitals and shapeshifter menu.
 
-Works on **latest** Among Us Steam version.
-
 > [!Warning]
 > AleLuduMod **doesn't** work with official servers from Innersloth. It is recommended to use modded servers.
 
@@ -26,9 +24,10 @@ Works on **latest** Among Us Steam version.
 
 | Mod Version | Among Us - Version | Downloads                                                                                       |
 |-------------|--------------------|-------------------------------------------------------------------------------------------------|
-| v1.1.2      | 17.0.0 - 17.2.2    | [Download](https://github.com/townofus-pl/AleLuduMod/releases/download/v1.1.2/AleLuduMod.dll) |
+| v1.1.3      | 17.0.0 - 17.3.1    | [Download](https://github.com/raspberrygitq/AleLuduMod/releases/download/v1.1.3/AleLuduMod.dll) |
+| v1.1.2      | 17.0.0 - 17.2.2    | [Download](https://github.com/raspberrygitq/AleLuduMod/releases/download/v1.1.2/AleLuduMod.dll) |
 | v1.1.1      | 17.0.0 - 17.2.1    | [Download](https://github.com/raspberrygitq/AleLuduMod/releases/download/v1.1.1/AleLuduMod.dll) |
-| v1.1.0      | 16.0.0 - 16.1.0    | [Download](https://github.com/raspberrygitq/AleLuduMod/releases/download/v1.1.0/AleLuduMod.dll) | 
+| v1.1.0      | 16.0.0 - 16.1.0    | [Download](https://github.com/raspberrygitq/AleLuduMod/releases/download/v1.1.0/AleLuduMod.dll) |
 
 <details>
   <summary> Archive </summary>
@@ -44,19 +43,24 @@ Works on **latest** Among Us Steam version.
 | v1.0.0      | 2024.11.26         | [Download](https://github.com/townofus-pl/AleLuduMod/releases/download/v1.0.0/AleLuduMod.dll) |
 </details>
 
+## Commands
+| Command           | Notes                                                     |
+|-------------------|-----------------------------------------------------------|
+| !limit [number]   | Set the maximum number of players in lobby (from 4 to 35).|
+
 ## Installation
 Drop `AleLuduMod.dll` it the **`BepInEx\plugins`** folder with other mods or download the zip package.
+
 > [!Warning]
-> The mod needs [BepInEx](https://builds.bepinex.dev/projects/bepinex_be) and [Reactor](https://github.com/nuclearpowered/reactor) to work properly. While **BepInEx** is used by every mod and shouldn't be a problem, without **Reactor** you can't launch the mod.
+> The mod needs [BepInEx](https://builds.bepinex.dev/projects/bepinex_be) and [Reactor](https://github.com/nuclearpowered/reactor) to work properly.\
+> While **BepInEx** is used by every mod and shouldn't be a problem, without **Reactor** you can't launch the mod.
 
 ## Mod Compatibility
+AleLuduMod should be compatible with most mods that don't significantly alter interface in the **Meeting / Vitals / Shapeshifter Menu**.
 
-AleLuduMod should be compatible with most mods that don't significantly alter interface in the meetings / vitals / shapeshifter menus.
 > [!Caution]
-> Host-only mods that use code from CrowdedMod are incompatible. CrowdedMod itself is **incompatible** with AleLuduMod because it modifies the interface in the same way as AleLuduMod.
-
-## Commands
-- `!limit <number>` - Set the maximum number of players in lobby (from 4 to 35).
+> CrowdedMod is **incompatible** with AleLuduMod because it modifies the interface.\
+> Host-only mods that use code from CrowdedMod are incompatible. 
 
 ## Authors
 - [TownOfUs.pl](https://townofus.pl/)
@@ -70,5 +74,6 @@ AleLuduMod should be compatible with most mods that don't significantly alter in
 - [andry08/100-player-mod](https://github.com/andry08/100-player-mod) - original author of the CrowdedMod plugin (andry08)
 ---
 > This mod is not affiliated with Among Us or Innersloth LLC, and the content contained therein is not endorsed or otherwise sponsored by Innersloth LLC. Portions of the materials contained herein are property of Innersloth LLC.\
-> © Innersloth LLC.\
+> © Innersloth LLC.
+>
 > [License](./LICENSE)
