@@ -59,7 +59,7 @@ Drop `AleLuduMod.dll` it the **`BepInEx\plugins`** folder with other mods or dow
 AleLuduMod should be compatible with most mods that don't significantly alter interface in the **Meeting / Vitals / Shapeshifter Menu**.
 
 > [!Caution]
-> CrowdedMod is **incompatible** with AleLuduMod because it modifies the interface.\
+> CrowdedMod is **incompatible** with AleLuduMod because it modifies the interface.
 
 ## Authors
 - [TownOfUs.pl](https://townofus.pl/)
