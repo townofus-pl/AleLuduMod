@@ -60,7 +60,6 @@ AleLuduMod should be compatible with most mods that don't significantly alter in
 
 > [!Caution]
 > CrowdedMod is **incompatible** with AleLuduMod because it modifies the interface.\
-> Host-only mods that use code from CrowdedMod are incompatible. 
 
 ## Authors
 - [TownOfUs.pl](https://townofus.pl/)
