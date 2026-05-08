@@ -26,6 +26,34 @@ internal static class GenericPatches
     [HarmonyPatch(typeof(GameStartManager), nameof(GameStartManager.Update))]
     public static class GameStartManagerUpdatePatch
     {
+        private static string fixDummyCounterColor = string.Empty;
+
+        public static void Prefix(GameStartManager __instance)
+        {
+            if (GameData.Instance == null || __instance.LastPlayerCount == GameData.Instance.PlayerCount) return;
+
+            if (__instance.LastPlayerCount > __instance.MinPlayers)
+            {
+                fixDummyCounterColor = "<color=#00FF00FF>";
+            }
+            else if (__instance.LastPlayerCount == __instance.MinPlayers)
+            {
+                fixDummyCounterColor = "<color=#FFFF00FF>";
+            }
+            else
+            {
+                fixDummyCounterColor = "<color=#FF0000FF>";
+            }
+        }
+
+        public static void Postfix(GameStartManager __instance)
+        {
+            if (string.IsNullOrEmpty(fixDummyCounterColor) || GameData.Instance == null || GameManager.Instance == null || GameManager.Instance.LogicOptions == null) return;
+
+            __instance.PlayerCounter.text = $"{fixDummyCounterColor}{GameData.Instance.PlayerCount}/{GameManager.Instance.LogicOptions.MaxPlayers}";
+            fixDummyCounterColor = string.Empty;
+        }
+
         [HarmonyPostfix]
         [HarmonyPatch(typeof(CreateGameOptions), nameof(CreateGameOptions.Show))]
         public static void CreateGameOptionsShowPostfix(CreateGameOptions __instance)
@@ -44,13 +72,9 @@ internal static class GenericPatches
         var type = manager.GetGameOptions();
         var options = manager.GameHostOptions.Cast<Il2CppSystem.Object>();
 
-        var maxRecommendation = ((Il2CppStructArray<int>)Enumerable.Repeat(MaxPlayers, MaxPlayers + 1).ToArray())
-            .Cast<Il2CppSystem.Object>();
-        var minRecommendation = ((Il2CppStructArray<int>)Enumerable.Repeat(4, MaxPlayers + 1).ToArray())
-            .Cast<Il2CppSystem.Object>();
-        var killRecommendation = ((Il2CppStructArray<int>)Enumerable.Repeat(0, MaxPlayers + 1).ToArray())
-            .Cast<Il2CppSystem.Object>();
-
+        var maxRecommendation = ((Il2CppStructArray<int>)Enumerable.Repeat(MaxPlayers, MaxPlayers + 1).ToArray()).Cast<Il2CppSystem.Object>();
+        var minRecommendation = ((Il2CppStructArray<int>)Enumerable.Repeat(4, MaxPlayers + 1).ToArray()).Cast<Il2CppSystem.Object>();
+        var killRecommendation = ((Il2CppStructArray<int>)Enumerable.Repeat(0, MaxPlayers + 1).ToArray()).Cast<Il2CppSystem.Object>();
 
         const BindingFlags flags = BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static;
         // all these fields are currently static, but we're doing a forward compat
@@ -79,21 +103,16 @@ internal static class GenericPatches
         }
     }
 
-    [HarmonyPatch(typeof(GameManager), nameof(GameManager.Awake))]
-    public static class GameManager_Awake
+    [HarmonyPatch(typeof(GameOptionsMenu), nameof(GameOptionsMenu.Initialize))]
+    public static class GameOptionsMenu_Initialize
     {
-        public static void Postfix(GameManager __instance)
+        public static void Postfix(GameOptionsMenu __instance)
         {
-            foreach (var category in __instance.GameSettingsList.AllCategories)
+            var numberOptions = __instance.GetComponentsInChildren<NumberOption>();
+            var impostorsOption = numberOptions.FirstOrDefault(o => o.Title == StringNames.GameNumImpostors);
+            if (impostorsOption != null)
             {
-                foreach (var option in category.AllGameSettings)
-                {
-                    if (option is IntGameSetting intOption && option.Title == StringNames.GameNumImpostors)
-                    {
-                        intOption.ValidRange = new IntRange(1, AleLuduModPlugin.MaxImpostors);
-                        return;
-                    }
-                }
+                impostorsOption.ValidRange.max = AleLuduModPlugin.MaxImpostors;
             }
         }
     }
