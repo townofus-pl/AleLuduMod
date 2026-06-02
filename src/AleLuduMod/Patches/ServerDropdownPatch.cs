@@ -1,4 +1,5 @@
-﻿using HarmonyLib;
+﻿using AleLuduMod.Modules;
+using HarmonyLib;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
@@ -20,7 +21,9 @@ public static class ServerDropdownPatch
 
     public static bool Prefix(ServerDropdown __instance)
     {
-        if (ModCompatibility.MiraApiLoaded) return true;
+        if (MiraAPICompatibility.MiraApiLoaded) return true;
+        if (TheOtherRolesCompatibility.TheOtherRolesIsLoaded) return true;
+        if (StellarRolesCompatibility.StellarRolesIsLoaded) return true;
 
         var num = 0;
         __instance.background.size = new Vector2(8.4f, 4.8f);

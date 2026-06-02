@@ -48,9 +48,10 @@ internal static class GenericPatches
 
         public static void Postfix(GameStartManager __instance)
         {
-            if (string.IsNullOrEmpty(fixDummyCounterColor) || GameData.Instance == null || GameManager.Instance == null || GameManager.Instance.LogicOptions == null) return;
+            if (GameData.Instance == null || AmongUsClient.Instance == null || GameManager.Instance == null || GameManager.Instance.LogicOptions == null || string.IsNullOrEmpty(fixDummyCounterColor)) return;
 
-            __instance.PlayerCounter.text = $"{fixDummyCounterColor}{GameData.Instance.PlayerCount}/{GameManager.Instance.LogicOptions.MaxPlayers}";
+            int maxPlayersNum = AmongUsClient.Instance.NetworkMode is NetworkModes.LocalGame ? AleLuduModPlugin.MaxPlayers : GameManager.Instance.LogicOptions.MaxPlayers;
+            __instance.PlayerCounter.text = $"{fixDummyCounterColor}{GameData.Instance.PlayerCount}/{maxPlayersNum}";
             fixDummyCounterColor = string.Empty;
         }
 

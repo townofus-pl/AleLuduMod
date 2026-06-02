@@ -1,4 +1,5 @@
-﻿using BepInEx;
+﻿using AleLuduMod.Modules;
+using BepInEx;
 using BepInEx.Unity.IL2CPP;
 using HarmonyLib;
 using Reactor;
@@ -20,7 +21,9 @@ public partial class AleLuduModPlugin : BasePlugin
     public override void Load()
     {
         ReactorCredits.Register<AleLuduModPlugin>(ReactorCredits.AlwaysShow);
-        IL2CPPChainloader.Instance.Finished += ModCompatibility.Initialize;
+        IL2CPPChainloader.Instance.Finished += MiraAPICompatibility.Initialize;
+        IL2CPPChainloader.Instance.Finished += TheOtherRolesCompatibility.Initialize;
+        IL2CPPChainloader.Instance.Finished += StellarRolesCompatibility.Initialize;
         AleLuduModConfig.Bind(Config);
         Harmony.PatchAll();
     }

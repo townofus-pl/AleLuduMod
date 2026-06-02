@@ -1,15 +1,14 @@
 ﻿using BepInEx.Unity.IL2CPP;
 using HarmonyLib;
-using Reactor.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using UnityEngine;
 
-namespace AleLuduMod;
+namespace AleLuduMod.Modules;
 
-public static class ModCompatibility
+public static class MiraAPICompatibility
 {
     public const string MiraApiGuid = "mira.api";
     public static bool MiraApiLoaded { get; private set; }
@@ -21,10 +20,7 @@ public static class ModCompatibility
     public static float XOffset = 1.95f;
     public static float YOffset = -0.65f;
 
-    public static void Initialize()
-    {
-        InitMiraApi();
-    }
+    public static void Initialize() => InitMiraApi();
 
     private static void InitMiraApi()
     {
@@ -38,12 +34,12 @@ public static class ModCompatibility
         var playerMenu = MiraApiTypes.First(t => t.Name == "CustomPlayerMenu");
         var menuBegin = AccessTools.Method(playerMenu, "Begin", new[] { typeof(Func<PlayerControl, bool>), typeof(Action<PlayerControl?>) });
 
-        var compatType = typeof(ModCompatibility);
+        var compatType = typeof(MiraAPICompatibility);
         var harmony = new Harmony("aleludu.miraapi.patch");
         harmony.Patch(menuBegin, null, new HarmonyMethod(AccessTools.Method(compatType, nameof(BeginPostfix))));
 
         MiraApiLoaded = true;
-        Logger<AleLuduModPlugin>.Message("MiraAPI was detected and patched");
+        AleLuduLogger.Info("MiraAPI was detected and patched");
     }
     public static void BeginPostfix(dynamic __instance, Func<PlayerControl, bool> playerMatch, Action<PlayerControl?> onClick)
     {

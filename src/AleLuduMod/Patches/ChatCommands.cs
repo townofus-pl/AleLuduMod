@@ -19,7 +19,7 @@ public class ChatCommands
             // Only after the game is over will there be a larger lobby.
             if (chatText.StartsWith("!limit "))
             {
-                if ((AmongUsClient.Instance.GameState == InnerNet.InnerNetClient.GameStates.Started || AmongUsClient.Instance.NetworkMode == NetworkModes.FreePlay || AmongUsClient.Instance.NetworkMode == NetworkModes.LocalGame) && sourcePlayer.PlayerId == PlayerControl.LocalPlayer.PlayerId)
+                if ((AmongUsClient.Instance.GameState == InnerNet.InnerNetClient.GameStates.Started || AmongUsClient.Instance.NetworkMode == NetworkModes.FreePlay) && sourcePlayer.PlayerId == PlayerControl.LocalPlayer.PlayerId)
                 {
                     if (sourcePlayer.PlayerId == PlayerControl.LocalPlayer.PlayerId)
                     {
