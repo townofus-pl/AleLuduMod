@@ -24,6 +24,7 @@ This mod unlocks the possibility to show more than 15 players on screen during a
 
 | Mod Version | Among Us - Version | Downloads                                                                                       |
 |-------------|--------------------|-------------------------------------------------------------------------------------------------|
+| v1.1.4      | 17.0.0 - 17.3.1    | [Download](https://github.com/raspberrygitq/AleLuduMod/releases/download/v1.1.4/AleLuduMod.dll) |
 | v1.1.3      | 17.0.0 - 17.3.1    | [Download](https://github.com/raspberrygitq/AleLuduMod/releases/download/v1.1.3/AleLuduMod.dll) |
 | v1.1.2      | 17.0.0 - 17.2.2    | [Download](https://github.com/raspberrygitq/AleLuduMod/releases/download/v1.1.2/AleLuduMod.dll) |
 | v1.1.1      | 17.0.0 - 17.2.1    | [Download](https://github.com/raspberrygitq/AleLuduMod/releases/download/v1.1.1/AleLuduMod.dll) |
