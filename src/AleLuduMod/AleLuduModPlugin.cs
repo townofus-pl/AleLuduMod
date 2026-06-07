@@ -10,7 +10,6 @@ namespace AleLuduMod;
 [BepInAutoPlugin("pl.townofus.aleludu")]
 [BepInProcess("Among Us.exe")]
 [BepInDependency(ReactorPlugin.Id)]
-[BepInDependency("gg.reactor.debugger", BepInDependency.DependencyFlags.SoftDependency)] // fix debugger overwriting MinPlayers
 [BepInIncompatibility("xyz.crowdedmods.crowdedmod")] // CrowdedMod is incompatible, because it modifies the interface of the Meeting / Vitals / Shapeshifter Menu.
 public partial class AleLuduModPlugin : BasePlugin
 {
@@ -24,6 +23,7 @@ public partial class AleLuduModPlugin : BasePlugin
         IL2CPPChainloader.Instance.Finished += MiraAPICompatibility.Initialize;
         IL2CPPChainloader.Instance.Finished += TheOtherRolesCompatibility.Initialize;
         IL2CPPChainloader.Instance.Finished += StellarRolesCompatibility.Initialize;
+        IL2CPPChainloader.Instance.Finished += AllTheRolesCompatibility.Initialize;
         AleLuduModConfig.Bind(Config);
         Harmony.PatchAll();
     }

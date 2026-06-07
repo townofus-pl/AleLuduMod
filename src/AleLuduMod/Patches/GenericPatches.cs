@@ -54,10 +54,13 @@ internal static class GenericPatches
             __instance.PlayerCounter.text = $"{fixDummyCounterColor}{GameData.Instance.PlayerCount}/{maxPlayersNum}";
             fixDummyCounterColor = string.Empty;
         }
+    }
 
-        [HarmonyPostfix]
-        [HarmonyPatch(typeof(CreateGameOptions), nameof(CreateGameOptions.Show))]
-        public static void CreateGameOptionsShowPostfix(CreateGameOptions __instance)
+    [HarmonyPatch(typeof(CreateGameOptions), nameof(CreateGameOptions.Show))]
+    public static class CreateGameOptionsShowPatch
+    {
+        [HarmonyPostfix, HarmonyPriority(Priority.Last)]
+        public static void Postfix(CreateGameOptions __instance)
         {
             var numberOption = __instance.gameObject.GetComponentInChildren<NumberOption>(true);
             if (numberOption != null)

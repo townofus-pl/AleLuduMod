@@ -11,6 +11,7 @@
 </div>
 
 #
+
 This mod unlocks the possibility to show more than 15 players on screen during an meeting hud, vitals and shapeshifter menu.
 
 > [!Warning]
@@ -24,6 +25,7 @@ This mod unlocks the possibility to show more than 15 players on screen during a
 
 | Mod Version | Among Us - Version | Downloads                                                                                       |
 |-------------|--------------------|-------------------------------------------------------------------------------------------------|
+| v1.1.5      | 17.0.0 - 17.3.1    | [Download](https://github.com/raspberrygitq/AleLuduMod/releases/download/v1.1.5/AleLuduMod.dll) |
 | v1.1.4      | 17.0.0 - 17.3.1    | [Download](https://github.com/raspberrygitq/AleLuduMod/releases/download/v1.1.4/AleLuduMod.dll) |
 | v1.1.3      | 17.0.0 - 17.3.1    | [Download](https://github.com/raspberrygitq/AleLuduMod/releases/download/v1.1.3/AleLuduMod.dll) |
 | v1.1.2      | 17.0.0 - 17.2.2    | [Download](https://github.com/raspberrygitq/AleLuduMod/releases/download/v1.1.2/AleLuduMod.dll) |
@@ -45,11 +47,13 @@ This mod unlocks the possibility to show more than 15 players on screen during a
 </details>
 
 ## Commands
+
 | Command           | Notes                                                     |
 |-------------------|-----------------------------------------------------------|
 | !limit [number]   | Set the maximum number of players in lobby (from 4 to 35).|
 
 ## Installation
+
 Drop `AleLuduMod.dll` it the **`BepInEx\plugins`** folder with other mods or download the zip package.
 
 > [!Warning]
@@ -57,12 +61,14 @@ Drop `AleLuduMod.dll` it the **`BepInEx\plugins`** folder with other mods or dow
 > While **BepInEx** is used by every mod and shouldn't be a problem, without **Reactor** you can't launch the mod.
 
 ## Mod Compatibility
+
 AleLuduMod should be compatible with most mods that don't significantly alter interface in the **Meeting / Vitals / Shapeshifter Menu**.
 
 > [!Caution]
-> CrowdedMod is **incompatible** with AleLuduMod because it modifies the interface.
+> CrowdedMod is **incompatible** with AleLuduMod.
 
 ## Authors
+
 - [TownOfUs.pl](https://townofus.pl/)
 - OrzechMC
 - Bubeu
@@ -70,10 +76,16 @@ AleLuduMod should be compatible with most mods that don't significantly alter in
 - Atony
 
 ## Credits
+
 - [CrowdedMods](https://github.com/CrowdedMods/CrowdedMod) - current authors of CrowdedMod that we used as a base for our mod
 - [andry08/100-player-mod](https://github.com/andry08/100-player-mod) - original author of the CrowdedMod plugin (andry08)
----
-> This mod is not affiliated with Among Us or Innersloth LLC, and the content contained therein is not endorsed or otherwise sponsored by Innersloth LLC. Portions of the materials contained herein are property of Innersloth LLC.\
-> © Innersloth LLC.
->
-> [License](./LICENSE)
+- [MiraAPI](https://github.com/All-Of-Us-Mods/MiraAPI) - using the code to patch ServerDropdown
+
+<div align="center">
+
+#
+This mod is not affiliated with Among Us or Innersloth LLC, and the content contained therein is not endorsed or otherwise sponsored by Innersloth LLC. Portions of the materials contained herein are property of Innersloth LLC.
+
+© Innersloth LLC.
+
+</div>

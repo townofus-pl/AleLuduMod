@@ -21,9 +21,8 @@ public static class ServerDropdownPatch
 
     public static bool Prefix(ServerDropdown __instance)
     {
-        if (MiraAPICompatibility.MiraApiLoaded) return true;
-        if (TheOtherRolesCompatibility.TheOtherRolesIsLoaded) return true;
-        if (StellarRolesCompatibility.StellarRolesIsLoaded) return true;
+        if (MiraAPICompatibility.MiraApiLoaded || TheOtherRolesCompatibility.TheOtherRolesIsLoaded || 
+            StellarRolesCompatibility.StellarRolesIsLoaded || AllTheRolesCompatibility.AllTheRolesIsLoaded) return true;
 
         var num = 0;
         __instance.background.size = new Vector2(8.4f, 4.8f);
