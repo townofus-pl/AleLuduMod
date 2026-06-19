@@ -20,7 +20,7 @@ This mod unlocks the possibility to show more than 15 players on screen during a
 
 ## Presentation
 
-![Meeting](./Images/MeetingHudPreview.png)
+<img src="./Images/MeetingHudPreview.png">
 
 ## Versions
 
