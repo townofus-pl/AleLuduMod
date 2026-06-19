@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="./Images/Icon.png">
+  <img src="./Images/Icon.png" width=256/>
   <h1> AleLuduMod </h1>
 
 [![Discord](https://img.shields.io/badge/Discord-Join%20Server-5662f6?style=for-the-badge&logo=discord&logoColor=white)](https://discord.townofus.pl)
