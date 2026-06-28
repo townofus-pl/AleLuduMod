@@ -47,12 +47,6 @@ This mod unlocks the possibility to show more than 15 players on screen during a
 | v1.0.0      | 2024.11.26         | [Download](https://github.com/townofus-pl/AleLuduMod/releases/download/v1.0.0/AleLuduMod.dll) |
 </details>
 
-## Commands
-
-| Command             | Notes                                                      |
-|---------------------|------------------------------------------------------------|
-| `!limit <number>`   | Set the maximum number of players in lobby (from 4 to 35). |
-
 ## Installation
 
 Drop `AleLuduMod.dll` it the **`BepInEx\plugins`** folder with other mods or download the zip package.
