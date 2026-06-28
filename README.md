@@ -3,11 +3,11 @@
   <h1> AleLuduMod </h1>
 
 [![Discord](https://img.shields.io/badge/Discord-Join%20Server-5662f6?style=for-the-badge&logo=discord&logoColor=white)](https://discord.townofus.pl)
-[![Download](https://img.shields.io/badge/Download-Latest-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/raspberrygitq/AleLuduMod/releases/latest)
+[![Download](https://img.shields.io/badge/Download-Latest-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/townofus-pl/AleLuduMod/releases/latest)
 
-![GitHub Downloads](https://img.shields.io/github/downloads/raspberrygitq/AleLuduMod/total?style=flat&logo=github&labelColor=%23212024&color=%2343ab59)
-![GitHub Release](https://img.shields.io/github/v/release/raspberrygitq/AleLuduMod?include_prereleases&sort=date&display_name=tag&style=flat&logo=github&labelColor=%23212024&color=%2343ab59)
-![Licence](https://img.shields.io/github/license/raspberrygitq/AleLuduMod?style=flat&labelColor=%23212024&color=%2343ab59)
+![GitHub Downloads](https://img.shields.io/github/downloads/townofus-pl/AleLuduMod/total?style=flat&logo=github&labelColor=%23212024&color=%2343ab59)
+![GitHub Release](https://img.shields.io/github/v/release/townofus-pl/AleLuduMod?include_prereleases&sort=date&display_name=tag&style=flat&logo=github&labelColor=%23212024&color=%2343ab59)
+![Licence](https://img.shields.io/github/license/townofus-pl/AleLuduMod?style=flat&labelColor=%23212024&color=%2343ab59)
 
 </div>
 
