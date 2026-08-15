@@ -18,12 +18,12 @@ public partial class AleLuduModPlugin : BasePlugin
 
     public override void Load()
     {
-        ReactorCredits.Register<AleLuduModPlugin>(ReactorCredits.AlwaysShow);
-        IL2CPPChainloader.Instance.Finished += MiraAPICompatibility.Initialize;
-        IL2CPPChainloader.Instance.Finished += TheOtherRolesCompatibility.Initialize;
-        IL2CPPChainloader.Instance.Finished += StellarRolesCompatibility.Initialize;
-        IL2CPPChainloader.Instance.Finished += AllTheRolesCompatibility.Initialize;
         AleLuduModConfig.Bind(Config);
+
+        ReactorCredits.Register<AleLuduModPlugin>(ReactorCredits.AlwaysShow);
+
+        ModCompatibility.Loaded();
+
         Harmony.PatchAll();
     }
 }
