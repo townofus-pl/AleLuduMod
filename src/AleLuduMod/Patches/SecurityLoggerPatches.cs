@@ -11,6 +11,7 @@ internal static class SecurityLoggerPatches
         public static void Postfix(SecurityLogger __instance)
         {
             __instance.Timers = new Il2CppStructArray<float>(AleLuduModPlugin.MaxPlayers);
+            Info("Patched SecurityLogger Timers");
         }
     }
 }

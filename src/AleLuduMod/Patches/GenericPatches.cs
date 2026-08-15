@@ -1,28 +1,15 @@
-using AmongUs.GameOptions;
 using HarmonyLib;
+using Hazel;
+using Il2CppInterop.Runtime;
 using Il2CppInterop.Runtime.InteropTypes.Arrays;
 using Il2CppSystem.Reflection;
+using InnerNet;
 using System.Linq;
 
 namespace AleLuduMod.Patches;
 
 internal static class GenericPatches
 {
-    // I did not find a use of this method, but still patching for future updates
-    // maxExpectedPlayers is unknown, looks like server code tbh
-    [HarmonyPatch(typeof(LegacyGameOptions), nameof(LegacyGameOptions.AreInvalid))]
-    public static class InvalidOptionsPatches
-    {
-        public static bool Prefix(LegacyGameOptions __instance, [HarmonyArgument(0)] int maxExpectedPlayers)
-        {
-            return __instance.MaxPlayers > maxExpectedPlayers ||
-                   __instance.NumImpostors < 1 ||
-                   __instance.NumImpostors + 1 > maxExpectedPlayers / 2 ||
-                   __instance.KillDistance is < 0 or > 2 ||
-                   __instance.PlayerSpeedMod is <= 0f or > 3f;
-        }
-    }
-
     [HarmonyPatch(typeof(GameStartManager), nameof(GameStartManager.Update))]
     public static class GameStartManagerUpdatePatch
     {
@@ -56,54 +43,45 @@ internal static class GenericPatches
         }
     }
 
-    [HarmonyPatch(typeof(CreateGameOptions), nameof(CreateGameOptions.Show))]
-    public static class CreateGameOptionsShowPatch
+    [HarmonyPatch(typeof(InnerNetServer), nameof(InnerNetServer.HandleNewGameJoin))]
+    public static class InnerNetSerer_HandleNewGameJoin
     {
-        [HarmonyPostfix, HarmonyPriority(Priority.Last)]
-        public static void Postfix(CreateGameOptions __instance)
+        public static bool Prefix(InnerNetServer __instance, [HarmonyArgument(0)] InnerNetServer.Player client)
         {
-            var numberOption = __instance.gameObject.GetComponentInChildren<NumberOption>(true);
-            if (numberOption != null)
+            if (__instance.Clients.Count is < 15 or >= AleLuduModPlugin.MaxPlayers) return true;
+
+            __instance.Clients.Add(client);
+
+            client.LimboState = LimboStates.PreSpawn;
+            if (__instance.HostId == -1)
             {
-                numberOption.ValidRange.max = AleLuduModPlugin.MaxPlayers;
+                __instance.HostId = __instance.Clients.ToArray()[0].Id;
             }
-        }
-    }
 
-    private static void TryAdjustOptionsRecommendations(GameOptionsManager manager)
-    {
-        const int MaxPlayers = AleLuduModPlugin.MaxPlayers;
-        var type = manager.GetGameOptions();
-        var options = manager.GameHostOptions.Cast<Il2CppSystem.Object>();
+            if (__instance.HostId == client.Id)
+            {
+                client.LimboState = LimboStates.NotLimbo;
+            }
 
-        var maxRecommendation = ((Il2CppStructArray<int>)Enumerable.Repeat(MaxPlayers, MaxPlayers + 1).ToArray()).Cast<Il2CppSystem.Object>();
-        var minRecommendation = ((Il2CppStructArray<int>)Enumerable.Repeat(4, MaxPlayers + 1).ToArray()).Cast<Il2CppSystem.Object>();
-        var killRecommendation = ((Il2CppStructArray<int>)Enumerable.Repeat(0, MaxPlayers + 1).ToArray()).Cast<Il2CppSystem.Object>();
+            var writer = MessageWriter.Get(SendOption.Reliable);
+            try
+            {
+                __instance.WriteJoinedMessage(client, writer, true);
+                client.Connection.Send(writer);
+                __instance.BroadcastJoinMessage(client, writer);
+            }
+            catch (Il2CppException exception)
+            {
+                UnityEngine.Debug.LogError("[CM] InnerNetServer::HandleNewGameJoin MessageWriter 2 Exception: " +
+                               exception.Message);
+                // Debug.LogException(exception, __instance);
+            }
+            finally
+            {
+                writer.Recycle();
+            }
 
-        const BindingFlags flags = BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static;
-        // all these fields are currently static, but we're doing a forward compat
-        // static fields ignore object param so non-null instance is ok
-        type.GetField("RecommendedImpostors", flags)?.SetValue(options, maxRecommendation);
-        type.GetField("MaxImpostors", flags)?.SetValue(options, maxRecommendation);
-        type.GetField("RecommendedKillCooldown", flags)?.SetValue(options, killRecommendation);
-        type.GetField("MinPlayers", flags)?.SetValue(options, minRecommendation);
-    }
-
-    [HarmonyPatch(typeof(GameOptionsManager), nameof(GameOptionsManager.GameHostOptions), MethodType.Setter)]
-    public static class GameOptionsManager_set_GameHostOptions
-    {
-        public static void Postfix(GameOptionsManager __instance)
-        {
-            TryAdjustOptionsRecommendations(__instance);
-        }
-    }
-
-    [HarmonyPatch(typeof(GameOptionsManager), nameof(GameOptionsManager.SwitchGameMode))]
-    public static class GameOptionsManager_SwitchGameMode
-    {
-        public static void Postfix(GameOptionsManager __instance)
-        {
-            TryAdjustOptionsRecommendations(__instance);
+            return false;
         }
     }
 
@@ -116,8 +94,73 @@ internal static class GenericPatches
             var impostorsOption = numberOptions.FirstOrDefault(o => o.Title == StringNames.GameNumImpostors);
             if (impostorsOption != null)
             {
-                impostorsOption.ValidRange.max = AleLuduModPlugin.MaxImpostors;
+                impostorsOption.ValidRange.max = AleLuduModPlugin.MaxPlayers / 2;
             }
         }
+    }
+
+    [HarmonyPatch(typeof(GameOptionsManager), nameof(GameOptionsManager.GameHostOptions), MethodType.Setter)]
+    public static class GameOptionsManager_set_GameHostOptions
+    {
+        public static void Postfix(GameOptionsManager __instance)
+        {
+            try
+            {
+                TryAdjustOptionsRecommendations(__instance);
+            }
+            catch (System.Exception e)
+            {
+                Error($"Failed to adjust options recommendations: {e}");
+            }
+        }
+    }
+
+    [HarmonyPatch(typeof(GameOptionsManager), nameof(GameOptionsManager.SwitchGameMode))]
+    public static class GameOptionsManager_SwitchGameMode
+    {
+        public static void Postfix(GameOptionsManager __instance)
+        {
+            try
+            {
+                TryAdjustOptionsRecommendations(__instance);
+            }
+            catch (System.Exception e)
+            {
+                Error($"Failed to adjust options recommendations: {e}");
+            }
+        }
+    }
+
+    private static void TryAdjustOptionsRecommendations(GameOptionsManager manager)
+    {
+        if (manager == null)
+        {
+            Error("GameOptionsManager was null! Cannot set recommendations!");
+            return;
+        }
+
+        const int maxPlayers = AleLuduModPlugin.MaxPlayers;
+        var options = manager.GameHostOptions.Cast<Il2CppSystem.Object>();
+        if (options == null)
+        {
+            Error("GameHostOptions was null! Cannot set recommendations!");
+            return;
+        }
+
+        var type = options.GetIl2CppType();
+
+        var maxRecommendation = ((Il2CppStructArray<int>)Enumerable.Repeat(maxPlayers, maxPlayers + 1).ToArray()).Cast<Il2CppSystem.Object>();
+        var minRecommendation = ((Il2CppStructArray<int>)Enumerable.Repeat(4, maxPlayers + 1).ToArray()).Cast<Il2CppSystem.Object>();
+        var killRecommendation = ((Il2CppStructArray<int>)Enumerable.Repeat(0, maxPlayers + 1).ToArray()).Cast<Il2CppSystem.Object>();
+
+        const BindingFlags flags = BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static;
+        // all these fields are currently static, but we're doing a forward compat
+        // static fields ignore object param so non-null instance is ok
+        type.GetField("RecommendedImpostors", flags)?.SetValue(options, maxRecommendation); // Doesn't exist on HnS options
+        type.GetField("MaxImpostors", flags)?.SetValue(options, maxRecommendation);
+        type.GetField("RecommendedKillCooldown", flags)?.SetValue(options, killRecommendation);
+        type.GetField("MinPlayers", flags)?.SetValue(options, minRecommendation);
+
+        Info("Adjusted options recommendations");
     }
 }
