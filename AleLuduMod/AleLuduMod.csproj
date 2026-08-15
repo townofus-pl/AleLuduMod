@@ -2,7 +2,8 @@
 
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
-		<Version>1.2.0</Version>
+		<VersionPrefix>1.2.0</VersionPrefix>
+		<VersionSuffix>pre1</VersionSuffix>
 		<Authors>townofus.pl, OrzechMC, Bubeu, gitq, Atony</Authors>
 		<AssemblyName>AleLuduMod</AssemblyName>
 		<LangVersion>latest</LangVersion>
