@@ -24,4 +24,10 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: AleLuduMod.dll
-          path: src/AleLuduMod/bin/Release/net6.0/AleLuduMod.dll
+          path: AleLuduMod/bin/Release/net6.0/AleLuduMod.dll
+
+      - uses: softprops/action-gh-release@v2
+        if: github.ref_type == 'tag'
+        with:
+          draft: true
+          files: AleLuduMod/bin/Release/net6.0/AleLuduMod.dll
