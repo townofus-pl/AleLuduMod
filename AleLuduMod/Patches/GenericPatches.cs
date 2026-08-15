@@ -131,7 +131,7 @@ internal static class GenericPatches
         }
     }
 
-    private static void TryAdjustOptionsRecommendations(GameOptionsManager manager)
+    private static void TryAdjustOptionsRecommendations(GameOptionsManager? manager)
     {
         if (manager == null)
         {
