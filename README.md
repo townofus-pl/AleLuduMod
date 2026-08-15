@@ -16,7 +16,7 @@
 This mod unlocks the possibility to show more than 15 players on screen during an meeting hud, vitals and shapeshifter menu.
 
 > [!Warning]
-> AleLuduMod **doesn't** work with official servers from Innersloth. It is recommended to use modded servers.
+> AleLuduMod **doesn't** work with official servers from Innersloth. It is recommended to use modded servers.\
 > You can create a lobby for up to 127 players, but we recommend limiting it to 32 players in Classic mode. This does not apply to HideNSeek mode.
 
 ## Presentation
