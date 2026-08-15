@@ -20,6 +20,6 @@ public static class TheOtherRolesCompatibility
         TheOtherRolesAssembly = TheOtherRolesPlugin.GetType().Assembly;
 
         TheOtherRolesIsLoaded = true;
-        AleLuduLogger.Info("The Other Roles has successfully loaded!");
+        Message("The Other Roles has successfully loaded!");
     }
 }

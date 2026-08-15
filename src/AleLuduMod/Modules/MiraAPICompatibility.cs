@@ -39,7 +39,7 @@ public static class MiraApiCompatibility
         harmony.Patch(menuBegin, null, new HarmonyMethod(AccessTools.Method(compatType, nameof(BeginPostfix))));
 
         MiraApiLoaded = true;
-        AleLuduLogger.Info("MiraAPI was detected and patched");
+        Message("MiraAPI was detected and patched");
     }
     public static void BeginPostfix(dynamic __instance, Func<PlayerControl, bool> playerMatch, Action<PlayerControl?> onClick)
     {
