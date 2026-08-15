@@ -9,7 +9,7 @@ using Object = UnityEngine.Object;
 namespace AleLuduMod.Patches;
 
 [HarmonyPatch]
-class OptionsPatches
+public static class OptionsPatches
 {
     private static GameObject? popUp;
     private static TextMeshPro? titleText;
@@ -139,9 +139,9 @@ class OptionsPatches
         var button = Object.Instantiate(buttonPrefab, popUp.transform);
         button.transform.localPosition = new Vector3(-1.17f, 1.3f, -.5f);
         button.onState = AleLuduModConfig.Force4Columns.Value;
-        button.Background.color = button.onState ? Color.green : Palette.ImpostorRed;
-        button.Text.text = "Always Show 4 Columns";
-        button.Text.fontSizeMin = button.Text.fontSizeMax = 1.8f;
+        button.Background.color = button.onState ? Palette.AcceptedGreen : Color.white;
+        button.Text.text = $"Force 4 Columns: <b>{(AleLuduModConfig.Force4Columns.Value ? "On" : "Off")}</b>";
+        button.Text.fontSizeMin = button.Text.fontSizeMax = 1.6f;
 
         foreach (var spr in button.gameObject.GetComponentsInChildren<SpriteRenderer>())
         {
@@ -158,9 +158,10 @@ class OptionsPatches
         passiveButton.OnClick.AddListener((Action)(() =>
         {
             button.onState = AleLuduModConfig.Force4Columns.Value = !AleLuduModConfig.Force4Columns.Value;
-            button.Background.color = button.onState ? Color.green : Palette.ImpostorRed;
+            button.Background.color = button.onState ? Palette.AcceptedGreen : Color.white;
+            button.Text.text = $"Force 4 Columns: <b>{(AleLuduModConfig.Force4Columns.Value ? "On" : "Off")}</b>";
         }));
         passiveButton.OnMouseOver.AddListener((Action)(() => button.Background.color = new Color32(34, 139, 34, 255)));
-        passiveButton.OnMouseOut.AddListener((Action)(() => button.Background.color = button.onState ? Color.green : Palette.ImpostorRed));
+        passiveButton.OnMouseOut.AddListener((Action)(() => button.Background.color = button.onState ? Palette.AcceptedGreen : Color.white));
     }
 }
