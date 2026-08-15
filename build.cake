@@ -27,7 +27,7 @@ Task("Build")
     foreach (var gamePlatform in new[] { "Steam" })
     {
         settings.MSBuildSettings.Properties["GamePlatform"] = new[] { gamePlatform };
-        DotNetBuild("src", settings);
+        DotNetBuild("AleLuduMod", settings);
     }
 });
 
