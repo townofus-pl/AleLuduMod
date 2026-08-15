@@ -2,25 +2,31 @@
 using BepInEx.Unity.IL2CPP;
 using HarmonyLib;
 using Reactor;
+using Reactor.Networking;
+using Reactor.Networking.Attributes;
 using Reactor.Utilities;
 
 namespace AleLuduMod;
 
-[BepInAutoPlugin("pl.townofus.aleludu")]
+[BepInAutoPlugin("pl.townofus.aleludu", "AleLuduMod")]
 [BepInProcess("Among Us.exe")]
 [BepInDependency(ReactorPlugin.Id)]
+[ReactorModFlags(ModFlags.RequireOnHost)]
 [BepInIncompatibility("xyz.crowdedmods.crowdedmod")] // CrowdedMod is incompatible, because it modifies the interface of the Meeting / Vitals / Shapeshifter Menu.
+[BepInIncompatibility("dev.allofus.overloaded")] // Overloaded is incompatible, because it modifies the interface of the Meeting / Vitals / Shapeshifter Menu.
 public partial class AleLuduModPlugin : BasePlugin
 {
     public const int MaxPlayers = 35;
-    public const int MaxImpostors = MaxPlayers / 2;
+
     private Harmony Harmony { get; } = new(Id);
+
+    public static bool IsDevBuild => true;
 
     public override void Load()
     {
         AleLuduModConfig.Bind(Config);
 
-        ReactorCredits.Register<AleLuduModPlugin>(ReactorCredits.AlwaysShow);
+        ReactorCredits.Register("AleLuduMod", Version, IsDevBuild, ReactorCredits.AlwaysShow);
 
         ModCompatibility.Loaded();
 
