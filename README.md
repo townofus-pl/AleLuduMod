@@ -17,7 +17,7 @@ This mod unlocks the possibility to show more than 15 players on screen during a
 
 > [!Warning]
 > AleLuduMod **doesn't** work with official servers from Innersloth. It is recommended to use modded servers.\
-> You can create a lobby for up to 127 players, but we recommend limiting it to 32 players in Classic mode. This does not apply to HideNSeek mode.
+> You can create a lobby for up to 127 players, but we recommend limiting it to 28 players in Classic mode. This does not apply to HideNSeek mode.
 
 ## Presentation
 
@@ -27,14 +27,22 @@ This mod unlocks the possibility to show more than 15 players on screen during a
 
 | Mod Version | Among Us - Version | Downloads                                                                                       |
 |-------------|--------------------|-------------------------------------------------------------------------------------------------|
-| v1.1.3      | 17.0.0 - 17.4.0    | [Download](https://github.com/townofus-pl/AleLuduMod/releases/download/v1.1.3/AleLuduMod.dll)   |
-| v1.1.2      | 17.0.0 - 17.2.2    | [Download](https://github.com/townofus-pl/AleLuduMod/releases/download/v1.1.2/AleLuduMod.dll)	 |
-| v1.1.1      | 17.0.0 - 17.2.1    | [Download](https://github.com/raspberrygitq/AleLuduMod/releases/download/v1.1.1/AleLuduMod.dll) |
-| v1.1.0      | 16.0.0 - 16.1.0    | [Download](https://github.com/raspberrygitq/AleLuduMod/releases/download/v1.1.0/AleLuduMod.dll) |
+| v1.2.0      | v17.0.0 - v18    | [Download](https://github.com/townofus-pl/AleLuduMod/releases/download/v1.2.0/AleLuduMod.dll)   |
+| v1.1.3      | v17.0.0 - v17.4.0    | [Download](https://github.com/townofus-pl/AleLuduMod/releases/download/v1.1.3/AleLuduMod.dll)   |
+| v1.1.2      | v17.0.0 - v17.2.2    | [Download](https://github.com/townofus-pl/AleLuduMod/releases/download/v1.1.2/AleLuduMod.dll)	 |
+| v1.1.1      | v17.0.0 - v17.2.1    | [Download](https://github.com/raspberrygitq/AleLuduMod/releases/download/v1.1.1/AleLuduMod.dll) |
+| v1.1.0      | v16.0.2 - v16.1.0    | [Download](https://github.com/raspberrygitq/AleLuduMod/releases/download/v1.1.0/AleLuduMod.dll) |
 
 ## Installation
 
 Drop `AleLuduMod.dll` in the **`BepInEx\plugins`** folder with other mods or download the zip package.
+
+```
+My Mod
+└─ BepInEx
+   └─ plugins
+      └─ AleLuduMod.dll
+```
 
 > [!Warning]
 > The mod needs [BepInEx](https://builds.bepinex.dev/projects/bepinex_be) and [Reactor](https://github.com/nuclearpowered/reactor) to work properly.\

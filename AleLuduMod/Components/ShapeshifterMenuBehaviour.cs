@@ -8,9 +8,9 @@ using UnityEngine;
 namespace AleLuduMod.Components;
 
 [RegisterInIl2Cpp]
-public class ShapeshifterBehaviour : MonoBehaviour
+public class ShapeshifterMenuBehaviour : MonoBehaviour
 {
-    public ShapeshifterBehaviour(IntPtr ptr) : base(ptr) { }
+    public ShapeshifterMenuBehaviour(IntPtr ptr) : base(ptr) { }
     internal ShapeshifterMinigame shapeshifterMinigame = null!;
 
     [HideFromIl2Cpp]

@@ -12,7 +12,6 @@ namespace AleLuduMod.Patches;
 public static class OptionsPatches
 {
     private static GameObject? popUp;
-    private static TextMeshPro? titleText;
     private static ToggleButtonBehaviour? buttonPrefab;
     private static Vector3? _origin;
 

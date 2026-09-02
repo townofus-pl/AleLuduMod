@@ -27,7 +27,7 @@ internal static class PagingPatches
     {
         public static void Postfix(ShapeshifterMinigame __instance)
         {
-            __instance.gameObject.AddComponent<ShapeshifterBehaviour>().shapeshifterMinigame = __instance;
+            __instance.gameObject.AddComponent<ShapeshifterMenuBehaviour>().shapeshifterMinigame = __instance;
         }
     }
 }
