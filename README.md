@@ -38,7 +38,7 @@ This mod unlocks the possibility to show more than 15 players on screen during a
 Drop `AleLuduMod.dll` in the **`BepInEx\plugins`** folder with other mods or download the zip package.
 
 ```
-My Mod
+My Among Us Folder
 └─ BepInEx
    └─ plugins
       └─ AleLuduMod.dll
