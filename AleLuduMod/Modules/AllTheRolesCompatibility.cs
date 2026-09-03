@@ -20,6 +20,6 @@ public static class AllTheRolesCompatibility
         AllTheRolesAssembly = Plugin.GetType().Assembly;
 
         AllTheRolesIsLoaded = true;
-        AleLuduLogger.Info("All The Roles has successfully loaded!");
+        Message("All The Roles has successfully loaded!");
     }
 }

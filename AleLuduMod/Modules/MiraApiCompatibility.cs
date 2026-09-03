@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace AleLuduMod.Modules;
 
-public static class MiraAPICompatibility
+public static class MiraApiCompatibility
 {
     public const string MiraApiGuid = "mira.api";
     public static bool MiraApiLoaded { get; private set; }
@@ -34,12 +34,12 @@ public static class MiraAPICompatibility
         var playerMenu = MiraApiTypes.First(t => t.Name == "CustomPlayerMenu");
         var menuBegin = AccessTools.Method(playerMenu, "Begin", new[] { typeof(Func<PlayerControl, bool>), typeof(Action<PlayerControl?>) });
 
-        var compatType = typeof(MiraAPICompatibility);
+        var compatType = typeof(MiraApiCompatibility);
         var harmony = new Harmony("aleludu.miraapi.patch");
         harmony.Patch(menuBegin, null, new HarmonyMethod(AccessTools.Method(compatType, nameof(BeginPostfix))));
 
         MiraApiLoaded = true;
-        AleLuduLogger.Info("MiraAPI was detected and patched");
+        Message("MiraAPI was detected and patched");
     }
     public static void BeginPostfix(dynamic __instance, Func<PlayerControl, bool> playerMatch, Action<PlayerControl?> onClick)
     {

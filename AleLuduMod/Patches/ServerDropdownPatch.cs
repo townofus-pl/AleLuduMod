@@ -20,7 +20,7 @@ public static class ServerDropdownPatch
 
     public static bool Prefix(ServerDropdown __instance)
     {
-        if (MiraAPICompatibility.MiraApiLoaded || TheOtherRolesCompatibility.TheOtherRolesIsLoaded ||
+        if (MiraApiCompatibility.MiraApiLoaded || TheOtherRolesCompatibility.TheOtherRolesIsLoaded ||
             StellarRolesCompatibility.StellarRolesIsLoaded || AllTheRolesCompatibility.AllTheRolesIsLoaded) return true;
 
         var num = 0;

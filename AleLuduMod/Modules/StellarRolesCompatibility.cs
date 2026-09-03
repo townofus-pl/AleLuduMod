@@ -20,6 +20,6 @@ public static class StellarRolesCompatibility
         StellarRolesAssembly = StellarRolesPlugin.GetType().Assembly;
 
         StellarRolesIsLoaded = true;
-        AleLuduLogger.Info("Stellar Roles has successfully loaded!");
+        Message("Stellar Roles has successfully loaded!");
     }
 }
