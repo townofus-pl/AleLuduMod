@@ -1,4 +1,5 @@
 ﻿using HarmonyLib;
+using System;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
@@ -9,6 +10,12 @@ namespace AleLuduMod.Patches;
 [HarmonyPatch(typeof(ServerDropdown), nameof(ServerDropdown.FillServerOptions))]
 public static class ServerDropdownPatch
 {
+    public static bool Prepare()
+    {
+        // On Android, Starlight handles this automatically
+        return !OperatingSystem.IsAndroid();
+    }
+
     public static bool RegionEquals(this IRegionInfo region, IRegionInfo other)
     {
         return region.Name == other.Name &&
@@ -20,6 +27,7 @@ public static class ServerDropdownPatch
 
     public static bool Prefix(ServerDropdown __instance)
     {
+        // If any of the following mods are loaded, we will not modify the server dropdown
         if (MiraApiCompatibility.MiraApiLoaded || TheOtherRolesCompatibility.TheOtherRolesIsLoaded ||
             StellarRolesCompatibility.StellarRolesIsLoaded || AllTheRolesCompatibility.AllTheRolesIsLoaded) return true;
 
