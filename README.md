@@ -40,7 +40,7 @@ By default, official Innersloth regions are removed after the plugin is loaded. 
 Drop `AleLuduMod.dll` in the **`BepInEx\plugins`** folder with other mods or download the zip package.
 
 ```
-My Mod
+My Among Us Mod
 └─ BepInEx
    └─ plugins
       └─ AleLuduMod.dll
