@@ -13,7 +13,7 @@
 
 #
 
-This mod unlocks the possibility to show more than 15 players on screen during an meeting hud, vitals and shapeshifter menu.
+This mod unlocks the possibility to show more than 15 players on screen during an Meeting, Vitals and Shapeshifter Menu.
 
 > [!Warning]
 > AleLuduMod **doesn't** work with official regions from Innersloth. It is recommended to use modded regions.\
