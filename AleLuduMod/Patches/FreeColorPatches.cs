@@ -2,8 +2,6 @@
 
 namespace AleLuduMod.Patches;
 
-// By default, the FreeColor option is disabled; you must change the configuration in the "BepInEx\config\pl.townofus.aleludu.cfg" file.
-// This option will not be available in the standard settings, as it is an experimental feature.
 internal static class FreeColorPatches
 {
     [HarmonyPatch(typeof(PlayerControl), nameof(PlayerControl.CheckColor))]
@@ -11,9 +9,10 @@ internal static class FreeColorPatches
     {
         public static bool Prefix(PlayerControl __instance, [HarmonyArgument(0)] byte colorId)
         {
-            if (!AleLuduModConfig.FreeColor.Value) return true; 
+            if (PlayerControl.AllPlayerControls.Count <= Palette.PlayerColors.Count) return true;
 
             __instance.RpcSetColor(colorId);
+
             return false;
         }
     }
@@ -23,8 +22,6 @@ internal static class FreeColorPatches
     {
         public static void Postfix(PlayerTab __instance)
         {
-            if (!AleLuduModConfig.FreeColor.Value) return;
-
             __instance.currentColorIsEquipped = false;
         }
     }
@@ -34,8 +31,6 @@ internal static class FreeColorPatches
     {
         public static bool Prefix(PlayerTab __instance)
         {
-            if (!AleLuduModConfig.FreeColor.Value) return true;
-
             __instance.AvailableColors.Clear();
 
             for (var i = 0; i < Palette.PlayerColors.Count; i++)
