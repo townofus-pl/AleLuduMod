@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace AleLuduMod;
 
-internal static class DeleteVanillaServer
+internal static class RemoveInnerslothRegions
 {
     [HarmonyPatch(typeof(MainMenuManager), nameof(MainMenuManager.Start))]
     public static class RemoveVanillaServerPatch

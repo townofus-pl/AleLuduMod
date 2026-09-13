@@ -32,6 +32,6 @@ public partial class AleLuduModPlugin : BasePlugin
 
         Harmony.PatchAll();
 
-        DeleteVanillaServer.RemoveVanillaServer();
+        RemoveInnerslothRegions.RemoveVanillaServer();
     }
 }
