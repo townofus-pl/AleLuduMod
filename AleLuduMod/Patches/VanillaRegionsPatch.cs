@@ -1,16 +1,9 @@
-﻿using HarmonyLib;
-using System.Linq;
+﻿using System.Linq;
 
-namespace AleLuduMod;
+namespace AleLuduMod.Patches;
 
-internal static class RemoveInnerslothRegions
+internal static class VanillaRegionsPatch
 {
-    [HarmonyPatch(typeof(MainMenuManager), nameof(MainMenuManager.Start))]
-    public static class RemoveVanillaServerPatch
-    {
-        public static void Postfix() => RemoveVanillaServer();
-    }
-
     public static void RemoveVanillaServer()
     {
         var sm = ServerManager.Instance;

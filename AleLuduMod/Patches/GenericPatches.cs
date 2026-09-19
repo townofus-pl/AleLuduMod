@@ -81,4 +81,13 @@ internal static class GenericPatches
             return false;
         }
     }
+
+    [HarmonyPatch(typeof(MainMenuManager), nameof(MainMenuManager.Start))]
+    public static class RemoveVanillaServerPatch
+    {
+        public static void Postfix()
+        {
+            VanillaRegionsPatch.RemoveVanillaServer();
+        }
+    }
 }
