@@ -13,11 +13,13 @@
 
 #
 
-This mod unlocks the possibility to show more than 15 players on screen during an meeting hud, vitals and shapeshifter menu.
+This mod unlocks the possibility to show more than 15 players on screen during an Meeting, Vitals and Shapeshifter Menu.
 
 > [!Warning]
-> AleLuduMod **doesn't** work with official servers from Innersloth. It is recommended to use modded servers.\
+> AleLuduMod **doesn't** work with official regions from Innersloth. It is recommended to use modded regions.\
 > You can create a lobby for up to 127 players, but we recommend limiting it to 28 players in Classic mode. This does not apply to HideNSeek mode.
+
+By default, official Innersloth regions are removed after the plugin is loaded. To install modded regions, go **[here](https://lotusau.top/regions/)**
 
 ## Presentation
 
@@ -27,6 +29,7 @@ This mod unlocks the possibility to show more than 15 players on screen during a
 
 | Mod Version | Among Us - Version | Downloads                                                                                       |
 |-------------|--------------------|-------------------------------------------------------------------------------------------------|
+| v1.2.1      | v17.0.0 - v18      | [Download](https://github.com/townofus-pl/AleLuduMod/releases/download/v1.2.1/AleLuduMod.dll)   |
 | v1.2.0      | v17.0.0 - v18      | [Download](https://github.com/townofus-pl/AleLuduMod/releases/download/v1.2.0/AleLuduMod.dll)   |
 | v1.1.3      | v17.0.0 - v17.4.0  | [Download](https://github.com/townofus-pl/AleLuduMod/releases/download/v1.1.3/AleLuduMod.dll)   |
 | v1.1.2      | v17.0.0 - v17.2.2  | [Download](https://github.com/townofus-pl/AleLuduMod/releases/download/v1.1.2/AleLuduMod.dll)	 |

@@ -1,0 +1,35 @@
+﻿using System.Linq;
+
+namespace AleLuduMod.Patches;
+
+internal static class VanillaRegionsPatch
+{
+    public static void RemoveVanillaServer()
+    {
+        var sm = ServerManager.Instance;
+        var curRegions = sm.AvailableRegions;
+        sm.AvailableRegions = curRegions.Where(region => !IsVanillaServer(region)).ToArray();
+
+        var defaultRegion = ServerManager.DefaultRegions;
+        ServerManager.DefaultRegions = defaultRegion.Where(region => !IsVanillaServer(region)).ToArray();
+
+        if (IsVanillaServer(sm.CurrentRegion))
+        {
+            var region = defaultRegion.FirstOrDefault();
+            sm.SetRegion(region);
+        }
+
+        Info("Finished removing Vanilla Servers!");
+    }
+
+    private static bool IsVanillaServer(IRegionInfo? regionInfo)
+    {
+        return regionInfo is
+        {
+            TranslateName:
+            StringNames.ServerAS or
+            StringNames.ServerEU or
+            StringNames.ServerNA
+        };
+    }
+}
