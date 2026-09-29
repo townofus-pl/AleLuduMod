@@ -29,12 +29,10 @@ By default, official Innersloth regions are removed after the plugin is loaded. 
 
 | Mod Version | Among Us - Version | Downloads                                                                                       |
 |-------------|--------------------|-------------------------------------------------------------------------------------------------|
-| v1.2.1      | v17.0.0 - v18      | [Download](https://github.com/townofus-pl/AleLuduMod/releases/download/v1.2.1/AleLuduMod.dll)   |
-| v1.2.0      | v17.0.0 - v18      | [Download](https://github.com/townofus-pl/AleLuduMod/releases/download/v1.2.0/AleLuduMod.dll)   |
-| v1.1.3      | v17.0.0 - v17.4.0  | [Download](https://github.com/townofus-pl/AleLuduMod/releases/download/v1.1.3/AleLuduMod.dll)   |
-| v1.1.2      | v17.0.0 - v17.2.2  | [Download](https://github.com/townofus-pl/AleLuduMod/releases/download/v1.1.2/AleLuduMod.dll)	 |
-| v1.1.1      | v17.0.0 - v17.2.1  | [Download](https://github.com/raspberrygitq/AleLuduMod/releases/download/v1.1.1/AleLuduMod.dll) |
-| v1.1.0      | v16.0.2 - v16.1.0  | [Download](https://github.com/raspberrygitq/AleLuduMod/releases/download/v1.1.0/AleLuduMod.dll) |
+| v1.2.1      | v16.0.2 - v19.0.0  | [Download](https://github.com/townofus-pl/AleLuduMod/releases/download/v1.2.1/AleLuduMod.dll)   |
+| v1.2.0      | v16.0.2 - v18.0.0  | [Download](https://github.com/townofus-pl/AleLuduMod/releases/download/v1.2.0/AleLuduMod.dll)   |
+| v1.1.3      | v16.0.2 - v17.4.0  | [Download](https://github.com/townofus-pl/AleLuduMod/releases/download/v1.1.3/AleLuduMod.dll)   |
+| v1.1.2      | v16.0.2 - v17.2.2  | [Download](https://github.com/townofus-pl/AleLuduMod/releases/download/v1.1.2/AleLuduMod.dll)	 |
 
 ## Installation
 
