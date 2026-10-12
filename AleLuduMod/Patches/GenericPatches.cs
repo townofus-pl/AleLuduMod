@@ -10,33 +10,23 @@ internal static class GenericPatches
     [HarmonyPatch(typeof(GameStartManager), nameof(GameStartManager.Update))]
     public static class GameStartManagerUpdatePatch
     {
-        private static string fixDummyCounterColor = string.Empty;
-
-        public static void Prefix(GameStartManager __instance)
-        {
-            if (GameData.Instance == null || __instance.LastPlayerCount == GameData.Instance.PlayerCount) return;
-
-            if (__instance.LastPlayerCount > __instance.MinPlayers)
-            {
-                fixDummyCounterColor = "<color=#00FF00FF>";
-            }
-            else if (__instance.LastPlayerCount == __instance.MinPlayers)
-            {
-                fixDummyCounterColor = "<color=#FFFF00FF>";
-            }
-            else
-            {
-                fixDummyCounterColor = "<color=#FF0000FF>";
-            }
-        }
-
         public static void Postfix(GameStartManager __instance)
         {
-            if (GameData.Instance == null || AmongUsClient.Instance == null || GameManager.Instance == null || GameManager.Instance.LogicOptions == null || string.IsNullOrEmpty(fixDummyCounterColor)) return;
+            if (GameData.Instance == null || AmongUsClient.Instance == null || GameManager.Instance == null || GameManager.Instance.LogicOptions == null || __instance.PlayerCounter == null) return;
 
-            int maxPlayersNum = AmongUsClient.Instance.NetworkMode is NetworkModes.LocalGame ? AleLuduModPlugin.MaxPlayers : GameManager.Instance.LogicOptions.MaxPlayers;
-            __instance.PlayerCounter.text = $"{fixDummyCounterColor}{GameData.Instance.PlayerCount}/{maxPlayersNum}";
-            fixDummyCounterColor = string.Empty;
+            int playerCount = GameData.Instance.PlayerCount;
+            int minPlayers = __instance.MinPlayers;
+
+            string counterColor = playerCount switch
+            {
+                _ when playerCount < minPlayers => "<color=#FF0000FF>",
+                _ when playerCount == minPlayers => "<color=#FFFF00FF>",
+                _ => "<color=#00FF00FF>"
+            };
+
+            int maxPlayers = AmongUsClient.Instance.NetworkMode is NetworkModes.LocalGame ? AleLuduModPlugin.MaxPlayers : GameManager.Instance.LogicOptions.MaxPlayers;
+
+            __instance.PlayerCounter.text = $"{counterColor}{playerCount}/{maxPlayers}";
         }
     }
 
