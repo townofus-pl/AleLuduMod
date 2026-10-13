@@ -29,6 +29,7 @@ By default, official Innersloth regions are removed after the plugin is loaded. 
 
 | Mod Version | Among Us - Version | Downloads                                                                                       |
 |-------------|--------------------|-------------------------------------------------------------------------------------------------|
+| v1.2.2      | v16.0.2 - v19.0.0  | [Download](https://github.com/townofus-pl/AleLuduMod/releases/download/v1.2.2/AleLuduMod.dll)   |
 | v1.2.1      | v16.0.2 - v19.0.0  | [Download](https://github.com/townofus-pl/AleLuduMod/releases/download/v1.2.1/AleLuduMod.dll)   |
 | v1.2.0      | v16.0.2 - v18.0.0  | [Download](https://github.com/townofus-pl/AleLuduMod/releases/download/v1.2.0/AleLuduMod.dll)   |
 | v1.1.3      | v16.0.2 - v17.4.0  | [Download](https://github.com/townofus-pl/AleLuduMod/releases/download/v1.1.3/AleLuduMod.dll)   |
