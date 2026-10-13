@@ -22,6 +22,8 @@ internal static class FreeColorPatches
     {
         public static void Postfix(PlayerTab __instance)
         {
+            if (PlayerControl.AllPlayerControls.Count <= Palette.PlayerColors.Count) return;
+
             __instance.currentColorIsEquipped = false;
         }
     }
@@ -31,6 +33,8 @@ internal static class FreeColorPatches
     {
         public static bool Prefix(PlayerTab __instance)
         {
+            if (PlayerControl.AllPlayerControls.Count <= Palette.PlayerColors.Count) return true;
+
             __instance.AvailableColors.Clear();
 
             for (var i = 0; i < Palette.PlayerColors.Count; i++)
