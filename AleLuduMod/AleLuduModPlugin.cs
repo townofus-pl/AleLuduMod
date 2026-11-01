@@ -28,10 +28,15 @@ public partial class AleLuduModPlugin : BasePlugin
 
         ReactorCredits.Register("AleLuduMod", Version, IsDevBuild, ReactorCredits.AlwaysShow);
 
-        ModCompatibility.Loaded();
+        // Register compatibility with other mods
+        IL2CPPChainloader.Instance.Finished += MiraApiCompatibility.Initialize;
+        IL2CPPChainloader.Instance.Finished += TheOtherRolesCompatibility.Initialize;
+        IL2CPPChainloader.Instance.Finished += StellarRolesCompatibility.Initialize;
+        IL2CPPChainloader.Instance.Finished += AllTheRolesCompatibility.Initialize;
+        IL2CPPChainloader.Instance.Finished += SyzyfowyTouCompatibility.Initialize;
 
         Harmony.PatchAll();
 
-        VanillaRegionsPatch.RemoveVanillaServer();
+        Utils.RemoveVanillaServer();
     }
 }

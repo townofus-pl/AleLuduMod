@@ -32,7 +32,7 @@ public static class ServerDropdownPatch
             StellarRolesCompatibility.StellarRolesIsLoaded || AllTheRolesCompatibility.AllTheRolesIsLoaded) return true;
 
         // Don't adjust for small region lists
-        if (ServerManager.Instance.AvailableRegions.Count <= 3) return true; 
+        if (ServerManager.Instance.AvailableRegions.Count <= 3) return true;
 
         var num = 0;
         __instance.background.size = new Vector2(8.4f, 4.8f);

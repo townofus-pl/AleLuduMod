@@ -12,10 +12,8 @@ internal static class GameOptionsMenuPatch
         {
             var numberOptions = __instance.GetComponentsInChildren<NumberOption>();
             var impostorsOption = numberOptions.FirstOrDefault(o => o.Title == StringNames.GameNumImpostors);
-            if (impostorsOption != null)
-            {
-                impostorsOption.ValidRange.max = AleLuduModPlugin.MaxPlayers / 2;
-            }
+
+            impostorsOption?.ValidRange.max = AleLuduModPlugin.MaxPlayers / 2;
         }
     }
 }

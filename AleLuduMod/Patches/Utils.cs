@@ -2,7 +2,7 @@
 
 namespace AleLuduMod.Patches;
 
-internal static class VanillaRegionsPatch
+internal static class Utils
 {
     public static void RemoveVanillaServer()
     {

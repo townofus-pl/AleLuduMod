@@ -3,7 +3,7 @@ using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
-using static UnityEngine.UI.Button;
+using UnityEngine.UI;
 using Object = UnityEngine.Object;
 
 namespace AleLuduMod.Patches;
@@ -78,7 +78,7 @@ public static class OptionsPatches
         moreOptions.Text.transform.localScale = new Vector3(1 / 0.66f, 1, 1);
 
         var moreOptionsButton = moreOptions.GetComponent<PassiveButton>();
-        moreOptionsButton.OnClick = new ButtonClickedEvent();
+        moreOptionsButton.OnClick = new Button.ButtonClickedEvent();
         moreOptionsButton.OnClick.AddListener((Action)(() =>
         {
             if (!popUp) return;
@@ -123,7 +123,7 @@ public static class OptionsPatches
         title.gameObject.SetActive(true);
 
         var titleButton = title.GetComponent<PassiveButton>();
-        titleButton.OnClick = new ButtonClickedEvent();
+        titleButton.OnClick = new Button.ButtonClickedEvent();
         titleButton.OnMouseOut = new UnityEvent();
         titleButton.OnMouseOver = new UnityEvent();
 
@@ -150,7 +150,7 @@ public static class OptionsPatches
         button.gameObject.SetActive(true);
 
         var passiveButton = button.GetComponent<PassiveButton>();
-        passiveButton.OnClick = new ButtonClickedEvent();
+        passiveButton.OnClick = new Button.ButtonClickedEvent();
         passiveButton.OnMouseOut = new UnityEvent();
         passiveButton.OnMouseOver = new UnityEvent();
 
