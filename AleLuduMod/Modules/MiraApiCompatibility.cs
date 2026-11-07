@@ -34,27 +34,23 @@ public static class MiraApiCompatibility
         var playerMenu = MiraApiTypes.First(t => t.Name == "CustomPlayerMenu");
         var menuBegin = playerMenu
             .GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
-            .FirstOrDefault(method =>
+            .Where(method =>
             {
-                if (method.Name != "Begin" || method.ReturnType != typeof(void)) return false;
-
-                var parameters = method.GetParameters();
-
-                return parameters.Length is 2 or 3
-                    && parameters[0].ParameterType == typeof(Func<PlayerControl, bool>)
-                    && parameters[1].ParameterType == typeof(Action<PlayerControl>)
-                    && (parameters.Length == 2 || parameters[2].ParameterType == typeof(bool));
+                return method.Name == "Begin";
             });
 
-        if (menuBegin == null)
+        if (menuBegin.Count() == 0)
         {
-            Message("Could not find a compatible MiraAPI CustomPlayerMenu.Begin method");
+            Message("Could not find any compatible CustomPlayerMenu.Begin method");
             return;
         }
 
         var compatType = typeof(MiraApiCompatibility);
         var harmony = new Harmony("aleludu.miraapi.patch");
-        harmony.Patch(menuBegin, null, new HarmonyMethod(AccessTools.Method(compatType, nameof(BeginPostfix))));
+        foreach (var type in menuBegin)
+        {
+            harmony.Patch(type, null, new HarmonyMethod(AccessTools.Method(compatType, nameof(BeginPostfix))));
+        }
 
         MiraApiLoaded = true;
         Message("MiraAPI was detected and patched");
