@@ -32,7 +32,25 @@ public static class MiraApiCompatibility
         MiraApiTypes = AccessTools.GetTypesFromAssembly(MiraApiAssembly);
 
         var playerMenu = MiraApiTypes.First(t => t.Name == "CustomPlayerMenu");
-        var menuBegin = AccessTools.Method(playerMenu, "Begin", new[] { typeof(Func<PlayerControl, bool>), typeof(Action<PlayerControl?>) });
+        var menuBegin = playerMenu
+            .GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
+            .FirstOrDefault(method =>
+            {
+                if (method.Name != "Begin" || method.ReturnType != typeof(void)) return false;
+
+                var parameters = method.GetParameters();
+
+                return parameters.Length is 2 or 3
+                    && parameters[0].ParameterType == typeof(Func<PlayerControl, bool>)
+                    && parameters[1].ParameterType == typeof(Action<PlayerControl>)
+                    && (parameters.Length == 2 || parameters[2].ParameterType == typeof(bool));
+            });
+
+        if (menuBegin == null)
+        {
+            Message("Could not find a compatible MiraAPI CustomPlayerMenu.Begin method");
+            return;
+        }
 
         var compatType = typeof(MiraApiCompatibility);
         var harmony = new Harmony("aleludu.miraapi.patch");
@@ -41,7 +59,7 @@ public static class MiraApiCompatibility
         MiraApiLoaded = true;
         Message("MiraAPI was detected and patched");
     }
-    public static void BeginPostfix(dynamic __instance, Func<PlayerControl, bool> playerMatch, Action<PlayerControl?> onClick)
+    public static void BeginPostfix(dynamic __instance)
     {
         var targets = __instance.potentialVictims as List<ShapeshifterPanel>;
         if (targets == null || targets.Count() < 16 && !AleLuduModConfig.Force4Columns.Value) return;
