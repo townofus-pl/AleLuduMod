@@ -15,10 +15,10 @@ public static class MiraApiCompatibility
     private static BasePlugin MiraApiPlugin { get; set; }
     private static Assembly MiraApiAssembly { get; set; }
     private static Type[] MiraApiTypes { get; set; }
-    public static float XStart = -0.8f;
-    public static float YStart = 2.15f;
-    public static float XOffset = 1.95f;
-    public static float YOffset = -0.65f;
+    private static float XStart = -0.8f;
+    private static float YStart = 2.15f;
+    private static float XOffset = 1.95f;
+    private static float YOffset = -0.65f;
 
     public static void Initialize() => InitMiraApi();
 
