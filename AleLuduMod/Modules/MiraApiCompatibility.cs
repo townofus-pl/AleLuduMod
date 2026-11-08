@@ -15,10 +15,10 @@ public static class MiraApiCompatibility
     private static BasePlugin MiraApiPlugin { get; set; }
     private static Assembly MiraApiAssembly { get; set; }
     private static Type[] MiraApiTypes { get; set; }
-    public static float XStart = -0.8f;
-    public static float YStart = 2.15f;
-    public static float XOffset = 1.95f;
-    public static float YOffset = -0.65f;
+    private static float XStart = -0.8f;
+    private static float YStart = 2.15f;
+    private static float XOffset = 1.95f;
+    private static float YOffset = -0.65f;
 
     public static void Initialize() => InitMiraApi();
 
@@ -31,17 +31,34 @@ public static class MiraApiCompatibility
 
         MiraApiTypes = AccessTools.GetTypesFromAssembly(MiraApiAssembly);
 
-        var playerMenu = MiraApiTypes.First(t => t.Name == "CustomPlayerMenu");
-        var menuBegin = AccessTools.Method(playerMenu, "Begin", new[] { typeof(Func<PlayerControl, bool>), typeof(Action<PlayerControl?>) });
+        var playerMenu = MiraApiTypes.FirstOrDefault(t => t.Name == "CustomPlayerMenu");
+        if (playerMenu == null)
+        {
+            Error("Couldn't find type CustomPlayerMenu in MiraAPI");
+            return;
+        }
 
-        var compatType = typeof(MiraApiCompatibility);
+        var menuBegin = playerMenu.GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.DeclaredOnly)
+            .Where(method => method.Name == "Begin");
+
+        Message($"Found {menuBegin.Count()} CustomPlayerMenu.Begin methods in MiraAPI");
+
+        if (menuBegin.Count() == 0)
+        {
+            Error("Could not find any compatible CustomPlayerMenu.Begin method");
+            return;
+        }
+
         var harmony = new Harmony("aleludu.miraapi.patch");
-        harmony.Patch(menuBegin, null, new HarmonyMethod(AccessTools.Method(compatType, nameof(BeginPostfix))));
+        foreach (var type in menuBegin)
+        {
+            harmony.Patch(type, null, new HarmonyMethod(AccessTools.Method(typeof(MiraApiCompatibility), nameof(BeginPostfix))));
+        }
 
         MiraApiLoaded = true;
         Message("MiraAPI was detected and patched");
     }
-    public static void BeginPostfix(dynamic __instance, Func<PlayerControl, bool> playerMatch, Action<PlayerControl?> onClick)
+    public static void BeginPostfix(dynamic __instance)
     {
         var targets = __instance.potentialVictims as List<ShapeshifterPanel>;
         if (targets == null || targets.Count() < 16 && !AleLuduModConfig.Force4Columns.Value) return;

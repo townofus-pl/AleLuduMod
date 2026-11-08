@@ -12,6 +12,9 @@ public static class ServerDropdownPatch
 {
     public static bool Prepare()
     {
+        var method = AccessTools.Method(typeof(ServerDropdown), nameof(ServerDropdown.FillServerOptions));
+        var isPatched = Harmony.GetPatchInfo(method);
+        if (isPatched != null && isPatched.Owners.Count > 0) return false;
         // On Android, Starlight handles this automatically
         return !OperatingSystem.IsAndroid();
     }
@@ -29,10 +32,11 @@ public static class ServerDropdownPatch
     {
         // If any of the following mods are loaded, we will not modify the server dropdown
         if (MiraApiCompatibility.MiraApiLoaded || TheOtherRolesCompatibility.TheOtherRolesIsLoaded ||
-            StellarRolesCompatibility.StellarRolesIsLoaded || AllTheRolesCompatibility.AllTheRolesIsLoaded) return true;
+            StellarRolesCompatibility.StellarRolesIsLoaded || AllTheRolesCompatibility.AllTheRolesIsLoaded ||
+            SyzyfowyTouCompatibility.SyzyfowyTouIsLoaded) return true;
 
         // Don't adjust for small region lists
-        if (ServerManager.Instance.AvailableRegions.Count <= 3) return true; 
+        if (ServerManager.Instance.AvailableRegions.Count <= 3) return true;
 
         var num = 0;
         __instance.background.size = new Vector2(8.4f, 4.8f);
