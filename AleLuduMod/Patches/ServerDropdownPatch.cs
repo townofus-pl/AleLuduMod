@@ -12,6 +12,9 @@ public static class ServerDropdownPatch
 {
     public static bool Prepare()
     {
+        var method = AccessTools.Method(typeof(ServerDropdown), nameof(ServerDropdown.FillServerOptions));
+        var isPatched = Harmony.GetPatchInfo(method);
+        if (isPatched != null && isPatched.Owners.Count > 0) return false;
         // On Android, Starlight handles this automatically
         return !OperatingSystem.IsAndroid();
     }
