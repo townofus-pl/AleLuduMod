@@ -33,6 +33,7 @@ public partial class AleLuduModPlugin : BasePlugin
         IL2CPPChainloader.Instance.Finished += TheOtherRolesCompatibility.Initialize;
         IL2CPPChainloader.Instance.Finished += StellarRolesCompatibility.Initialize;
         IL2CPPChainloader.Instance.Finished += AllTheRolesCompatibility.Initialize;
+        IL2CPPChainloader.Instance.Finished += SyzyfowyTouCompatibility.Initialize;
 
         Harmony.PatchAll();
 

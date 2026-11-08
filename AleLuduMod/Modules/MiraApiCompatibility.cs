@@ -43,11 +43,10 @@ public static class MiraApiCompatibility
             return;
         }
 
-        var compatType = typeof(MiraApiCompatibility);
         var harmony = new Harmony("aleludu.miraapi.patch");
         foreach (var type in menuBegin)
         {
-            harmony.Patch(type, null, new HarmonyMethod(AccessTools.Method(compatType, nameof(BeginPostfix))));
+            harmony.Patch(type, null, new HarmonyMethod(AccessTools.Method(typeof(MiraApiCompatibility), nameof(BeginPostfix))));
         }
 
         MiraApiLoaded = true;

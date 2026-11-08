@@ -29,7 +29,8 @@ public static class ServerDropdownPatch
     {
         // If any of the following mods are loaded, we will not modify the server dropdown
         if (MiraApiCompatibility.MiraApiLoaded || TheOtherRolesCompatibility.TheOtherRolesIsLoaded ||
-            StellarRolesCompatibility.StellarRolesIsLoaded || AllTheRolesCompatibility.AllTheRolesIsLoaded) return true;
+            StellarRolesCompatibility.StellarRolesIsLoaded || AllTheRolesCompatibility.AllTheRolesIsLoaded ||
+            SyzyfowyTouCompatibility.SyzyfowyTouIsLoaded) return true;
 
         // Don't adjust for small region lists
         if (ServerManager.Instance.AvailableRegions.Count <= 3) return true;
