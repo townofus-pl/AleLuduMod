@@ -31,12 +31,18 @@ public static class MiraApiCompatibility
 
         MiraApiTypes = AccessTools.GetTypesFromAssembly(MiraApiAssembly);
 
-        var playerMenu = MiraApiTypes.First(t => t.Name == "CustomPlayerMenu");
-        var menuBegin = playerMenu.GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
-            .Where(method =>
-            {
-                return method.Name == "Begin";
-            });
+        var playerMenu = MiraApiTypes.FirstOrDefault(t => t.Name == "CustomPlayerMenu");
+        if (playerMenu == null)
+        {
+            Error("Couldn't find type CustomPlayerMenu in MiraAPI");
+            return;
+        }
+
+        var menuBegin = playerMenu.GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.DeclaredOnly)
+            .Where(method => method.Name == "Begin");
+
+        Message($"Found {menuBegin.Count()} CustomPlayerMenu.Begin methods in MiraAPI");
+
         if (menuBegin.Count() == 0)
         {
             Error("Could not find any compatible CustomPlayerMenu.Begin method");

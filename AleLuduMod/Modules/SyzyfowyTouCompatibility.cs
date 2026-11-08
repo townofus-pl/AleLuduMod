@@ -25,12 +25,18 @@ public static class SyzyfowyTouCompatibility
 
         SyzyfowyTouTypes = AccessTools.GetTypesFromAssembly(SyzyfowyTouAssembly);
 
-        var playerMenu = SyzyfowyTouTypes.First(t => t.Name == "CustomPlayerMenu");
-        var menuBegin = playerMenu.GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
-            .Where(method =>
-            {
-                return method.Name == "Begin";
-            });
+        var playerMenu = SyzyfowyTouTypes.FirstOrDefault(t => t.Name == "CustomPlayerMenu");
+        if (playerMenu == null)
+        {
+            Error("Couldn't find type CustomPlayerMenu in Syzyfowy Town Of Us");
+            return;
+        }
+
+        var menuBegin = playerMenu.GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.DeclaredOnly)
+            .Where(method => method.Name == "Begin");
+
+        Message($"Found {menuBegin.Count()} CustomPlayerMenu.Begin methods in Syzyfowy Town Of Us");
+
         if (menuBegin.Count() == 0)
         {
             Error("Could not find any compatible CustomPlayerMenu.Begin method");
