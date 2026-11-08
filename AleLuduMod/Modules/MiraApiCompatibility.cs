@@ -33,7 +33,7 @@ public static class MiraApiCompatibility
 
         var playerMenu = MiraApiTypes.First(t => t.Name == "CustomPlayerMenu");
         var menuBegin = playerMenu.GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
-            .Where(method => 
+            .Where(method =>
             {
                 return method.Name == "Begin";
             });
