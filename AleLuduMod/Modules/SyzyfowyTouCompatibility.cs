@@ -31,9 +31,9 @@ public static class SyzyfowyTouCompatibility
             {
                 return method.Name == "Begin";
             });
-        if (menuBegin == null)
+        if (menuBegin.Count() == 0)
         {
-            Error("Could not find a compatible MiraAPI CustomPlayerMenu.Begin method");
+            Error("Could not find any compatible CustomPlayerMenu.Begin method");
             return;
         }
 
