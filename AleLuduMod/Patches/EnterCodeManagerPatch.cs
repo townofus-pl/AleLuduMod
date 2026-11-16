@@ -10,25 +10,19 @@ namespace AleLuduMod.Patches;
 [HarmonyPatch]
 internal static class EnterCodeManagerPatch
 {
-    private static GameObject EnterCodeSelectServer;
-    public static MainMenuManager MainMenuManager = null;
-
-    public static bool Prepare()
-    {
-        var method = AccessTools.Method(typeof(EnterCodeManager), nameof(EnterCodeManager.OnEnable));
-        var isPatched = Harmony.GetPatchInfo(method);
-        if (isPatched != null && isPatched.Owners.Count > 0) return false;
-        return true;
-    }
+    private static GameObject? EnterCodeSelectServer;
+    public static MainMenuManager? MainMenuManager = null;
 
     [HarmonyPatch(typeof(EnterCodeManager), nameof(EnterCodeManager.OnEnable))]
     [HarmonyPostfix]
     public static void OnEnable(EnterCodeManager __instance)
     {
+        if (TheOtherRolesCompatibility.TheOtherRolesIsLoaded) return;
+
         var mainmenu = MainMenuManager;
         if (mainmenu != null)
         {
-            ServerDropdown dropdown = null;
+            ServerDropdown? dropdown = null;
             if (!EnterCodeSelectServer)
             {
                 var obj = UnityEngine.Object.Instantiate(mainmenu.createGameScreen.serverButton.transform.parent.gameObject, __instance.enterCodeField.transform.parent);
@@ -52,7 +46,7 @@ internal static class EnterCodeManagerPatch
             {
                 tmps.Do(t => t.text = text);
             }
-            string SetCurrentServer()
+            string? SetCurrentServer()
             {
                 var serverManager = ServerManager.Instance;
                 var translationController = TranslationController.Instance;

@@ -4,7 +4,6 @@ namespace AleLuduMod.Patches;
 
 internal static class MainMenuManagerPatches
 {
-
     [HarmonyPatch(typeof(MainMenuManager), nameof(MainMenuManager.Start))]
     public static class MainMenuManager_Start
     {
