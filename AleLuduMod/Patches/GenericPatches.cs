@@ -36,9 +36,7 @@ internal static class GenericPatches
             }
             catch (Il2CppException exception)
             {
-                UnityEngine.Debug.LogError("[CM] InnerNetServer::HandleNewGameJoin MessageWriter 2 Exception: " +
-                               exception.Message);
-                // Debug.LogException(exception, __instance);
+                Error("InnerNetServer::HandleNewGameJoin MessageWriter 2 Exception: " + exception.Message);
             }
             finally
             {
@@ -47,11 +45,5 @@ internal static class GenericPatches
 
             return false;
         }
-    }
-
-    [HarmonyPatch(typeof(MainMenuManager), nameof(MainMenuManager.Start))]
-    public static class RemoveVanillaServerPatch
-    {
-        public static void Postfix() => Utils.RemoveVanillaServer();
     }
 }
