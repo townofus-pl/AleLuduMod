@@ -10,8 +10,8 @@ namespace AleLuduMod.Patches;
 [HarmonyPatch]
 internal static class EnterCodeManagerPatch
 {
-    private static GameObject? EnterCodeSelectServer;
-    public static MainMenuManager? MainMenuManager = null;
+    private static GameObject EnterCodeSelectServer = null!;
+    public static MainMenuManager MainMenuManager = null!;
 
     [HarmonyPatch(typeof(EnterCodeManager), nameof(EnterCodeManager.OnEnable))]
     [HarmonyPostfix]
@@ -22,7 +22,7 @@ internal static class EnterCodeManagerPatch
         var mainmenu = MainMenuManager;
         if (mainmenu != null)
         {
-            ServerDropdown? dropdown = null;
+            ServerDropdown dropdown = null!;
             if (!EnterCodeSelectServer)
             {
                 var obj = UnityEngine.Object.Instantiate(mainmenu.createGameScreen.serverButton.transform.parent.gameObject, __instance.enterCodeField.transform.parent);
@@ -62,7 +62,7 @@ internal static class EnterCodeManagerPatch
             }
             void OpenServerDropdown()
             {
-                dropdown?.gameObject.SetActive(true);
+                dropdown.gameObject.SetActive(true);
                 serverButton.SetActive(false);
             }
             void CloseServerDropdown()
