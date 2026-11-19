@@ -11,7 +11,7 @@ namespace AleLuduMod.Patches;
 internal static class EnterCodeManagerPatch
 {
     private static GameObject? EnterCodeSelectServer;
-    public static MainMenuManager? MainMenuManager = null;
+    public static MainMenuManager MainMenuManager = null!;
 
     [HarmonyPatch(typeof(EnterCodeManager), nameof(EnterCodeManager.OnEnable))]
     [HarmonyPostfix]
@@ -24,7 +24,7 @@ internal static class EnterCodeManagerPatch
             var mainmenu = MainMenuManager;
             if (mainmenu != null)
             {
-                ServerDropdown? dropdown = null;
+                ServerDropdown dropdown = null!;
                 if (!EnterCodeSelectServer)
                 {
                     var obj = UnityEngine.Object.Instantiate(mainmenu.createGameScreen.serverButton.transform.parent.gameObject, __instance.enterCodeField.transform.parent);
@@ -50,8 +50,8 @@ internal static class EnterCodeManagerPatch
                 }
                 string SetCurrentServer()
                 {
-                    IRegionInfo currentRegion = DestroyableSingleton<ServerManager>.Instance.CurrentRegion;
-                    return DestroyableSingleton<TranslationController>.Instance.GetStringWithDefault(currentRegion.TranslateName, currentRegion.Name, new Il2CppReferenceArray<Il2CppSystem.Object>(Array.Empty<Il2CppSystem.Object>()));
+                    IRegionInfo currentRegion = ServerManager.Instance.CurrentRegion;
+                    return TranslationController.Instance.GetStringWithDefault(currentRegion.TranslateName, currentRegion.Name, new Il2CppReferenceArray<Il2CppSystem.Object>(Array.Empty<Il2CppSystem.Object>()));
                 }
                 void OpenServerDropdown()
                 {
@@ -64,19 +64,16 @@ internal static class EnterCodeManagerPatch
                 }
                 UpdateServer(SetCurrentServer());
                 dropdown.transform.localPosition = new(0.5348f, -1.2209f, -15f);
-                dropdown.transform.localScale = UnityEngine.Vector2.one;
-                dropdown.Initialize(new System.Action<string>(s => UpdateServer(s)), new System.Action(() => CloseServerDropdown()));
+                dropdown.transform.localScale = Vector2.one;
+                dropdown.Initialize(new Action<string>(s => UpdateServer(s)), new Action(() => CloseServerDropdown()));
                 var button = EnterCodeSelectServer.transform.Find("ServerBox").GetComponent<PassiveButton>();
                 button.OnClick = new();
-                button.OnClick.AddListener((System.Action)(() =>
-                {
-                    OpenServerDropdown();
-                }));
+                button.OnClick.AddListener((Action)(() => OpenServerDropdown()));
                 dropdown.transform.GetChild(0).GetComponent<PassiveButton>().enabled = false;
             }
         }
-        catch 
-        { 
+        catch
+        {
 
         }
     }
